@@ -2,164 +2,164 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="D:\software\android_studio\workspace\Link\res" >
+        <source path="F:\APP\LinkGame\res" >
             <file
                 name="icon"
-                path="D:\software\android_studio\workspace\Link\res\drawable-hdpi\icon.png"
+                path="F:\APP\LinkGame\res\drawable-hdpi\icon.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="icon"
-                path="D:\software\android_studio\workspace\Link\res\drawable-ldpi\icon.png"
+                path="F:\APP\LinkGame\res\drawable-ldpi\icon.png"
                 qualifiers="ldpi-v4"
                 type="drawable" />
             <file
                 name="button_selector"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\button_selector.xml"
+                path="F:\APP\LinkGame\res\drawable-mdpi\button_selector.xml"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="icon"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\icon.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\icon.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="lost"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\lost.jpg"
+                path="F:\APP\LinkGame\res\drawable-mdpi\lost.jpg"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_1"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_1.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_1.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_10"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_10.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_10.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_11"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_11.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_11.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_12"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_12.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_12.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_13"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_13.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_13.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_14"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_14.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_14.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_15"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_15.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_15.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_16"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_16.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_16.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_17"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_17.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_17.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_18"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_18.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_18.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_19"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_19.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_19.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_2"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_2.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_2.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_20"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_20.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_20.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_3"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_3.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_3.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_4"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_4.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_4.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_5"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_5.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_5.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_6"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_6.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_6.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_7"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_7.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_7.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_8"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_8.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_8.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="p_9"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\p_9.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\p_9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="room"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\room.jpg"
+                path="F:\APP\LinkGame\res\drawable-mdpi\room.jpg"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="selected"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\selected.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\selected.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="start"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\start.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\start.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="start_down"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\start_down.png"
+                path="F:\APP\LinkGame\res\drawable-mdpi\start_down.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="success"
-                path="D:\software\android_studio\workspace\Link\res\drawable-mdpi\success.gif"
+                path="F:\APP\LinkGame\res\drawable-mdpi\success.gif"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="main"
-                path="D:\software\android_studio\workspace\Link\res\layout\main.xml"
+                path="F:\APP\LinkGame\res\layout\main.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="D:\software\android_studio\workspace\Link\res\values\strings.xml"
+                path="F:\APP\LinkGame\res\values\strings.xml"
                 qualifiers="" >
                 <string name="game_time" >剩余时间：
                 </string>
@@ -169,11 +169,11 @@
                 </string>
             </file>
         </source>
-        <source path="D:\software\android_studio\workspace\Link\build\generated\res\rs\debug" />
-        <source path="D:\software\android_studio\workspace\Link\build\generated\res\generated\debug" />
+        <source path="F:\APP\LinkGame\build\generated\res\rs\debug" />
+        <source path="F:\APP\LinkGame\build\generated\res\generated\debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="D:\software\android_studio\workspace\Link\build-types\debug\res" />
+        <source path="F:\APP\LinkGame\build-types\debug\res" />
     </dataSet>
 
 </merger>

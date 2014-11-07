@@ -4,8 +4,8 @@ import org.crazyit.link.object.LinkInfo;
 import org.crazyit.link.view.Piece;
 
 /**
- * Description: ÓÎÏ·Âß¼­½Ó¿Ú
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: æ¸¸æˆé€»è¾‘æ¥å£
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -15,40 +15,40 @@ import org.crazyit.link.view.Piece;
  */
 public interface GameService
 {
-	/**
-	 * ¿ØÖÆÓÎÏ·¿ªÊ¼µÄ·½·¨
-	 */
-	void start();
+    /**
+     * æ§åˆ¶æ¸¸æˆå¼€å§‹çš„æ–¹æ³•
+     */
+    void start();
 
-	/**
-	 * ¶¨ÒåÒ»¸ö½Ó¿Ú·½·¨, ÓÃÓÚ·µ»ØÒ»¸ö¶şÎ¬Êı×é
-	 * 
-	 * @return ´æ·Å·½¿é¶ÔÏóµÄ¶şÎ¬Êı×é
-	 */
-	Piece[][] getPieces();
-	
-	/**
-	 * ÅĞ¶Ï²ÎÊıPiece[][]Êı×éÖĞÊÇ·ñ»¹´æÔÚ·Ç¿ÕµÄPiece¶ÔÏó
-	 * 
-	 * @return Èç¹û»¹Ê£Piece¶ÔÏó·µ»Øtrue, Ã»ÓĞ·µ»Øfalse
-	 */
-	boolean hasPieces();
-	
-	/**
-	 * ¸ù¾İÊó±êµÄx×ù±êºÍy×ù±ê, ²éÕÒ³öÒ»¸öPiece¶ÔÏó
-	 * 
-	 * @param touchX Êó±êµã»÷µÄx×ù±ê
-	 * @param touchY Êó±êµã»÷µÄy×ù±ê
-	 * @return ·µ»Ø¶ÔÓ¦µÄPiece¶ÔÏó, Ã»ÓĞ·µ»Ønull
-	 */
-	Piece findPiece(float touchX, float touchY);
+    /**
+     * å®šä¹‰ä¸€ä¸ªæ¥å£æ–¹æ³•, ç”¨äºè¿”å›ä¸€ä¸ªäºŒç»´æ•°ç»„
+     *
+     * @return å­˜æ”¾æ–¹å—å¯¹è±¡çš„äºŒç»´æ•°ç»„
+     */
+    Piece[][] getPieces();
 
-	/**
-	 * ÅĞ¶ÏÁ½¸öPieceÊÇ·ñ¿ÉÒÔÏàÁ¬, ¿ÉÒÔÁ¬½Ó, ·µ»ØLinkInfo¶ÔÏó
-	 * 
-	 * @param p1 µÚÒ»¸öPiece¶ÔÏó
-	 * @param p2 µÚ¶ş¸öPiece¶ÔÏó
-	 * @return Èç¹û¿ÉÒÔÏàÁ¬£¬·µ»ØLinkInfo¶ÔÏó, Èç¹ûÁ½¸öPiece²»¿ÉÒÔÁ¬½Ó, ·µ»Ønull
-	 */
-	LinkInfo link(Piece p1, Piece p2);
+    /**
+     * åˆ¤æ–­å‚æ•°Piece[][]æ•°ç»„ä¸­æ˜¯å¦è¿˜å­˜åœ¨éç©ºçš„Pieceå¯¹è±¡
+     *
+     * @return å¦‚æœè¿˜å‰©Pieceå¯¹è±¡è¿”å›true, æ²¡æœ‰è¿”å›false
+     */
+    boolean hasPieces();
+
+    /**
+     * æ ¹æ®é¼ æ ‡çš„xåº§æ ‡å’Œyåº§æ ‡, æŸ¥æ‰¾å‡ºä¸€ä¸ªPieceå¯¹è±¡
+     *
+     * @param touchX é¼ æ ‡ç‚¹å‡»çš„xåº§æ ‡
+     * @param touchY é¼ æ ‡ç‚¹å‡»çš„yåº§æ ‡
+     * @return è¿”å›å¯¹åº”çš„Pieceå¯¹è±¡, æ²¡æœ‰è¿”å›null
+     */
+    Piece findPiece(float touchX, float touchY);
+
+    /**
+     * åˆ¤æ–­ä¸¤ä¸ªPieceæ˜¯å¦å¯ä»¥ç›¸è¿, å¯ä»¥è¿æ¥, è¿”å›LinkInfoå¯¹è±¡
+     *
+     * @param p1 ç¬¬ä¸€ä¸ªPieceå¯¹è±¡
+     * @param p2 ç¬¬äºŒä¸ªPieceå¯¹è±¡
+     * @return å¦‚æœå¯ä»¥ç›¸è¿ï¼Œè¿”å›LinkInfoå¯¹è±¡, å¦‚æœä¸¤ä¸ªPieceä¸å¯ä»¥è¿æ¥, è¿”å›null
+     */
+    LinkInfo link(Piece p1, Piece p2);
 }

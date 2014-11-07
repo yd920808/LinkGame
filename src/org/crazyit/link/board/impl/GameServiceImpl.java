@@ -15,807 +15,807 @@ import org.crazyit.link.view.Piece;
 import android.graphics.Point;
 
 /**
- * Description: ÓÎÏ·Âß¼­µÄÊµÏÖÀà <br/>
+ * Description: æ¸¸æˆé€»è¾‘çš„å®ç°ç±» <br/>
  * site: <a href="http://www.crazyit.org">crazyit.org</a> <br/>
  * Copyright (C), 2001-2012, Yeeku.H.Lee <br/>
  * This program is protected by copyright laws. <br/>
  * Program Name: <br/>
  * Date:
- * 
+ *
  * @author Yeeku.H.Lee kongyeeku@163.com
  * @version 1.0
  */
 public class GameServiceImpl implements GameService
 {
-	// ¶¨ÒåÒ»¸öPiece[][]Êı×é£¬Ö»Ìá¹©getter·½·¨
-	private Piece[][] pieces;
-	// ÓÎÏ·ÅäÖÃ¶ÔÏó
-	private GameConf config;
+    // å®šä¹‰ä¸€ä¸ªPiece[][]æ•°ç»„ï¼Œåªæä¾›getteræ–¹æ³•
+    private Piece[][] pieces;
+    // æ¸¸æˆé…ç½®å¯¹è±¡
+    private GameConf config;
 
-	public GameServiceImpl(GameConf config)
-	{
-		// ½«ÓÎÏ·µÄÅäÖÃ¶ÔÏóÉèÖÃ±¾ÀàÖĞ
-		this.config = config;
-	}
+    public GameServiceImpl(GameConf config)
+    {
+        // å°†æ¸¸æˆçš„é…ç½®å¯¹è±¡è®¾ç½®æœ¬ç±»ä¸­
+        this.config = config;
+    }
 
-	@Override
-	public void start()
-	{
-		// ¶¨ÒåÒ»¸öAbstractBoard¶ÔÏó
-		AbstractBoard board = null;
-		Random random = new Random();
-		// »ñÈ¡Ò»¸öËæ»úÊı, ¿ÉÈ¡Öµ0¡¢1¡¢2¡¢3ËÄÖµ¡£
-		int index = random.nextInt(4);
-		// Ëæ»úÉú³ÉAbstractBoardµÄ×ÓÀàÊµÀı
-		switch (index)
-		{
-			case 0:
-				// 0·µ»ØVerticalBoard(ÊúÏò)
-				board = new VerticalBoard();
-				break;
-			case 1:
-				// 1·µ»ØHorizontalBoard(ºáÏò)
-				board = new HorizontalBoard();
-				break;
-			default:
-				// Ä¬ÈÏ·µ»ØFullBoard
-				board = new FullBoard();
-				break;
-		}
-		// ³õÊ¼»¯Piece[][]Êı×é
-		this.pieces = board.create(config);
-	}
+    @Override
+    public void start()
+    {
+        // å®šä¹‰ä¸€ä¸ªAbstractBoardå¯¹è±¡
+        AbstractBoard board = null;
+        Random random = new Random();
+        // è·å–ä¸€ä¸ªéšæœºæ•°, å¯å–å€¼0ã€1ã€2ã€3å››å€¼ã€‚
+        int index = random.nextInt(4);
+        // éšæœºç”ŸæˆAbstractBoardçš„å­ç±»å®ä¾‹
+        switch (index)
+        {
+            case 0:
+                // 0è¿”å›VerticalBoard(ç«–å‘)
+                board = new VerticalBoard();
+                break;
+            case 1:
+                // 1è¿”å›HorizontalBoard(æ¨ªå‘)
+                board = new HorizontalBoard();
+                break;
+            default:
+                // é»˜è®¤è¿”å›FullBoard
+                board = new FullBoard();
+                break;
+        }
+        // åˆå§‹åŒ–Piece[][]æ•°ç»„
+        this.pieces = board.create(config);
+    }
 
-	// Ö±½Ó·µ»Ø±¾¶ÔÏóµÄPiece[][]Êı×é
-	@Override
-	public Piece[][] getPieces()
-	{
-		return this.pieces;
-	}
+    // ç›´æ¥è¿”å›æœ¬å¯¹è±¡çš„Piece[][]æ•°ç»„
+    @Override
+    public Piece[][] getPieces()
+    {
+        return this.pieces;
+    }
 
-	// ÊµÏÖ½Ó¿ÚµÄhasPieces·½·¨
-	@Override
-	public boolean hasPieces()
-	{
-		// ±éÀúPiece[][]Êı×éµÄÃ¿¸öÔªËØ
-		for (int i = 0; i < pieces.length; i++)
-		{
-			for (int j = 0; j < pieces[i].length; j++)
-			{
-				// Ö»ÒªÈÎÒâÒ»¸öÊı×éÔªËØ²»Îªnull£¬Ò²¾ÍÊÇ»¹Ê£ÓĞ·Ç¿ÕµÄPiece¶ÔÏó
-				if (pieces[i][j] != null)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    // å®ç°æ¥å£çš„hasPiecesæ–¹æ³•
+    @Override
+    public boolean hasPieces()
+    {
+        // éå†Piece[][]æ•°ç»„çš„æ¯ä¸ªå…ƒç´ 
+        for (int i = 0; i < pieces.length; i++)
+        {
+            for (int j = 0; j < pieces[i].length; j++)
+            {
+                // åªè¦ä»»æ„ä¸€ä¸ªæ•°ç»„å…ƒç´ ä¸ä¸ºnullï¼Œä¹Ÿå°±æ˜¯è¿˜å‰©æœ‰éç©ºçš„Pieceå¯¹è±¡
+                if (pieces[i][j] != null)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	// ¸ù¾İ´¥ÅöµãµÄÎ»ÖÃ²éÕÒÏàÓ¦µÄ·½¿é
-	@Override
-	public Piece findPiece(float touchX, float touchY)
-	{
-		// ÓÉÓÚÔÚ´´½¨Piece¶ÔÏóµÄÊ±ºò, ½«Ã¿¸öPieceµÄ¿ªÊ¼×ù±ê¼ÓÁË
-		// GameConfÖĞÉèÖÃµÄbeginImageX/beginImageYÖµ, Òò´ËÕâÀïÒª¼õÈ¥Õâ¸öÖµ
-		int relativeX = (int) touchX - this.config.getBeginImageX();
-		int relativeY = (int) touchY - this.config.getBeginImageY();
-		// Èç¹ûÊó±êµã»÷µÄµØ·½±ÈboardÖĞµÚÒ»ÕÅÍ¼Æ¬µÄ¿ªÊ¼x×ù±êºÍ¿ªÊ¼y×ù±êÒªĞ¡, ¼´Ã»ÓĞÕÒµ½ÏàÓ¦µÄ·½¿é
-		if (relativeX < 0 || relativeY < 0)
-		{
-			return null;
-		}
-		// »ñÈ¡relativeX×ù±êÔÚPiece[][]Êı×éÖĞµÄµÚÒ»Î¬µÄË÷ÒıÖµ
-		// µÚ¶ş¸ö²ÎÊıÎªÃ¿ÕÅÍ¼Æ¬µÄ¿í
-		int indexX = getIndex(relativeX, GameConf.PIECE_WIDTH);
-		// »ñÈ¡relativeY×ù±êÔÚPiece[][]Êı×éÖĞµÄµÚ¶şÎ¬µÄË÷ÒıÖµ
-		// µÚ¶ş¸ö²ÎÊıÎªÃ¿ÕÅÍ¼Æ¬µÄ¸ß
-		int indexY = getIndex(relativeY, GameConf.PIECE_HEIGHT);
-		// ÕâÁ½¸öË÷Òı±ÈÊı×éµÄ×îĞ¡Ë÷Òı»¹Ğ¡, ·µ»Ønull
-		if (indexX < 0 || indexY < 0)
-		{
-			return null;
-		}
-		// ÕâÁ½¸öË÷Òı±ÈÊı×éµÄ×î´óË÷Òı»¹´ó(»òÕßµÈÓÚ), ·µ»Ønull
-		if (indexX >= this.config.getXSize()
-			|| indexY >= this.config.getYSize())
-		{
-			return null;
-		}
-		// ·µ»ØPiece[][]Êı×éµÄÖ¸¶¨ÔªËØ
-		return this.pieces[indexX][indexY];
-	}
+    // æ ¹æ®è§¦ç¢°ç‚¹çš„ä½ç½®æŸ¥æ‰¾ç›¸åº”çš„æ–¹å—
+    @Override
+    public Piece findPiece(float touchX, float touchY)
+    {
+        // ç”±äºåœ¨åˆ›å»ºPieceå¯¹è±¡çš„æ—¶å€™, å°†æ¯ä¸ªPieceçš„å¼€å§‹åº§æ ‡åŠ äº†
+        // GameConfä¸­è®¾ç½®çš„beginImageX/beginImageYå€¼, å› æ­¤è¿™é‡Œè¦å‡å»è¿™ä¸ªå€¼
+        int relativeX = (int) touchX - this.config.getBeginImageX();
+        int relativeY = (int) touchY - this.config.getBeginImageY();
+        // å¦‚æœé¼ æ ‡ç‚¹å‡»çš„åœ°æ–¹æ¯”boardä¸­ç¬¬ä¸€å¼ å›¾ç‰‡çš„å¼€å§‹xåº§æ ‡å’Œå¼€å§‹yåº§æ ‡è¦å°, å³æ²¡æœ‰æ‰¾åˆ°ç›¸åº”çš„æ–¹å—
+        if (relativeX < 0 || relativeY < 0)
+        {
+            return null;
+        }
+        // è·å–relativeXåº§æ ‡åœ¨Piece[][]æ•°ç»„ä¸­çš„ç¬¬ä¸€ç»´çš„ç´¢å¼•å€¼
+        // ç¬¬äºŒä¸ªå‚æ•°ä¸ºæ¯å¼ å›¾ç‰‡çš„å®½
+        int indexX = getIndex(relativeX, GameConf.PIECE_WIDTH);
+        // è·å–relativeYåº§æ ‡åœ¨Piece[][]æ•°ç»„ä¸­çš„ç¬¬äºŒç»´çš„ç´¢å¼•å€¼
+        // ç¬¬äºŒä¸ªå‚æ•°ä¸ºæ¯å¼ å›¾ç‰‡çš„é«˜
+        int indexY = getIndex(relativeY, GameConf.PIECE_HEIGHT);
+        // è¿™ä¸¤ä¸ªç´¢å¼•æ¯”æ•°ç»„çš„æœ€å°ç´¢å¼•è¿˜å°, è¿”å›null
+        if (indexX < 0 || indexY < 0)
+        {
+            return null;
+        }
+        // è¿™ä¸¤ä¸ªç´¢å¼•æ¯”æ•°ç»„çš„æœ€å¤§ç´¢å¼•è¿˜å¤§(æˆ–è€…ç­‰äº), è¿”å›null
+        if (indexX >= this.config.getXSize()
+                || indexY >= this.config.getYSize())
+        {
+            return null;
+        }
+        // è¿”å›Piece[][]æ•°ç»„çš„æŒ‡å®šå…ƒç´ 
+        return this.pieces[indexX][indexY];
+    }
 
-	// ¹¤¾ß·½·¨, ¸ù¾İrelative×ù±ê¼ÆËãÏà¶ÔÓÚPiece[][]Êı×éµÄµÚÒ»Î¬
-	// »òµÚ¶şÎ¬µÄË÷ÒıÖµ £¬sizeÎªÃ¿ÕÅÍ¼Æ¬±ßµÄ³¤»òÕß¿í
-	private int getIndex(int relative, int size)
-	{
-		// ±íÊ¾×ù±êrelative²»ÔÚ¸ÃÊı×éÖĞ
-		int index = -1;
-		// ÈÃ×ù±ê³ıÒÔ±ß³¤, Ã»ÓĞÓàÊı, Ë÷Òı¼õ1
-		// ÀıÈçµãÁËx×ù±êÎª20, ±ß¿íÎª10, 20 % 10 Ã»ÓĞÓàÊı,
-		// indexÎª1, ¼´ÔÚÊı×éÖĞµÄË÷ÒıÎª1(µÚ¶ş¸öÔªËØ)
-		if (relative % size == 0)
-		{
-			index = relative / size - 1;
-		}
-		else
-		{
-			// ÓĞÓàÊı, ÀıÈçµãÁËx×ù±êÎª21, ±ß¿íÎª10, 21 % 10ÓĞÓàÊı, indexÎª2
-			// ¼´ÔÚÊı×éÖĞµÄË÷ÒıÎª2(µÚÈı¸öÔªËØ)
-			index = relative / size;
-		}
-		return index;
-	}
-	
-	// ÊµÏÖ½Ó¿ÚµÄlink·½·¨
-	@Override
-	public LinkInfo link(Piece p1, Piece p2)
-	{
-		// Á½¸öPieceÊÇÍ¬Ò»¸ö, ¼´Ñ¡ÖĞÁËÍ¬Ò»¸ö·½¿é, ·µ»Ønull
-		if (p1.equals(p2))
-			return null;
-		// Èç¹ûp1µÄÍ¼Æ¬Óëp2µÄÍ¼Æ¬²»ÏàÍ¬, Ôò·µ»Ønull
-		if (!p1.isSameImage(p2))
-			return null;
-		// Èç¹ûp2ÔÚp1µÄ×ó±ß, ÔòĞèÒªÖØĞÂÖ´ĞĞ±¾·½·¨, Á½¸ö²ÎÊı»¥»»
-		if (p2.getIndexX() < p1.getIndexX())
-			return link(p2, p1);
-		// »ñÈ¡p1µÄÖĞĞÄµã
-		Point p1Point = p1.getCenter();
-		// »ñÈ¡p2µÄÖĞĞÄµã
-		Point p2Point = p2.getCenter();
-		// Èç¹ûÁ½¸öPieceÔÚÍ¬Ò»ĞĞ
-		if (p1.getIndexY() == p2.getIndexY())
-		{
-			// ËüÃÇÔÚÍ¬Ò»ĞĞ²¢¿ÉÒÔÏàÁ¬
-			if (!isXBlock(p1Point, p2Point, GameConf.PIECE_WIDTH))
-			{
-				return new LinkInfo(p1Point, p2Point);
-			}
-		}
-		// Èç¹ûÁ½¸öPieceÔÚÍ¬Ò»ÁĞ
-		if (p1.getIndexX() == p2.getIndexX())
-		{
-			if (!isYBlock(p1Point, p2Point, GameConf.PIECE_HEIGHT))
-			{
-				// ËüÃÇÖ®¼äÃ»ÓĞÕæ½ÓÕÏ°­, Ã»ÓĞ×ªÕÛµã
-				return new LinkInfo(p1Point, p2Point);
-			}
-		}
-		// ÓĞÒ»¸ö×ªÕÛµãµÄÇé¿ö
-		// »ñÈ¡Á½¸öµãµÄÖ±½ÇÏàÁ¬µÄµã, ¼´Ö»ÓĞÒ»¸ö×ªÕÛµã
-		Point cornerPoint = getCornerPoint(p1Point, p2Point,
-			GameConf.PIECE_WIDTH, GameConf.PIECE_HEIGHT);
-		if (cornerPoint != null)
-		{
-			return new LinkInfo(p1Point, cornerPoint, p2Point);
-		}
-		// ¸ÃmapµÄkey´æ·ÅµÚÒ»¸ö×ªÕÛµã, value´æ·ÅµÚ¶ş¸ö×ªÕÛµã,
-		// mapµÄsize()ËµÃ÷ÓĞ¶àÉÙÖÖ¿ÉÒÔÁ¬µÄ·½Ê½
-		Map<Point, Point> turns = getLinkPoints(p1Point, p2Point,
-			GameConf.PIECE_WIDTH, GameConf.PIECE_WIDTH);
-		if (turns.size() != 0)
-		{
-			return getShortcut(p1Point, p2Point, turns,
-				getDistance(p1Point, p2Point));
-		}
-		return null;
-	}
+    // å·¥å…·æ–¹æ³•, æ ¹æ®relativeåº§æ ‡è®¡ç®—ç›¸å¯¹äºPiece[][]æ•°ç»„çš„ç¬¬ä¸€ç»´
+    // æˆ–ç¬¬äºŒç»´çš„ç´¢å¼•å€¼ ï¼Œsizeä¸ºæ¯å¼ å›¾ç‰‡è¾¹çš„é•¿æˆ–è€…å®½
+    private int getIndex(int relative, int size)
+    {
+        // è¡¨ç¤ºåº§æ ‡relativeä¸åœ¨è¯¥æ•°ç»„ä¸­
+        int index = -1;
+        // è®©åº§æ ‡é™¤ä»¥è¾¹é•¿, æ²¡æœ‰ä½™æ•°, ç´¢å¼•å‡1
+        // ä¾‹å¦‚ç‚¹äº†xåº§æ ‡ä¸º20, è¾¹å®½ä¸º10, 20 % 10 æ²¡æœ‰ä½™æ•°,
+        // indexä¸º1, å³åœ¨æ•°ç»„ä¸­çš„ç´¢å¼•ä¸º1(ç¬¬äºŒä¸ªå…ƒç´ )
+        if (relative % size == 0)
+        {
+            index = relative / size - 1;
+        }
+        else
+        {
+            // æœ‰ä½™æ•°, ä¾‹å¦‚ç‚¹äº†xåº§æ ‡ä¸º21, è¾¹å®½ä¸º10, 21 % 10æœ‰ä½™æ•°, indexä¸º2
+            // å³åœ¨æ•°ç»„ä¸­çš„ç´¢å¼•ä¸º2(ç¬¬ä¸‰ä¸ªå…ƒç´ )
+            index = relative / size;
+        }
+        return index;
+    }
 
-	/**
-	 * »ñÈ¡Á½¸ö×ªÕÛµãµÄÇé¿ö
-	 * 
-	 * @param point1
-	 * @param point2
-	 * @return Map¶ÔÏóµÄÃ¿¸ökey-value¶Ô´ú±íÒ»ÖÖÁ¬½Ó·½Ê½£¬
-	 *   ÆäÖĞkey¡¢value·Ö±ğ´ú±íµÚ1¸ö¡¢µÚ2¸öÁ¬½Óµã
-	 */
-	private Map<Point, Point> getLinkPoints(Point point1, Point point2,
-		int pieceWidth, int pieceHeight)
-	{
-		Map<Point, Point> result = new HashMap<Point, Point>();
-		// »ñÈ¡ÒÔpoint1ÎªÖĞĞÄµÄÏòÉÏ, ÏòÓÒ, ÏòÏÂµÄÍ¨µÀ
-		List<Point> p1UpChanel = getUpChanel(point1, point2.y, pieceHeight);
-		List<Point> p1RightChanel = getRightChanel(point1, point2.x, pieceWidth);
-		List<Point> p1DownChanel = getDownChanel(point1, point2.y, pieceHeight);
-		// »ñÈ¡ÒÔpoint2ÎªÖĞĞÄµÄÏòÏÂ, Ïò×ó, ÏòÉÏµÄÍ¨µÀ
-		List<Point> p2DownChanel = getDownChanel(point2, point1.y, pieceHeight);
-		List<Point> p2LeftChanel = getLeftChanel(point2, point1.x, pieceWidth);
-		List<Point> p2UpChanel = getUpChanel(point2, point1.y, pieceHeight);
-		// »ñÈ¡BoardµÄ×î´ó¸ß¶È
-		int heightMax = (this.config.getYSize() + 1) * pieceHeight
-			+ this.config.getBeginImageY();
-		// »ñÈ¡BoardµÄ×î´ó¿í¶È
-		int widthMax = (this.config.getXSize() + 1) * pieceWidth
-			+ this.config.getBeginImageX();
-		// ÏÈÈ·¶¨Á½¸öµãµÄ¹ØÏµ
-		// point2ÔÚpoint1µÄ×óÉÏ½Ç»òÕß×óÏÂ½Ç
-		if (isLeftUp(point1, point2) || isLeftDown(point1, point2))
-		{
-			// ²ÎÊı»»Î», µ÷ÓÃ±¾·½·¨
-			return getLinkPoints(point2, point1, pieceWidth, pieceHeight);
-		}
-		// p1¡¢p2Î»ÓÚÍ¬Ò»ĞĞ²»ÄÜÖ±½ÓÏàÁ¬
-		if (point1.y == point2.y)
-		{
-			// ÔÚÍ¬Ò»ĞĞ
-			// ÏòÉÏ±éÀú
-			// ÒÔp1µÄÖĞĞÄµãÏòÉÏ±éÀú»ñÈ¡µã¼¯ºÏ
-			p1UpChanel = getUpChanel(point1, 0, pieceHeight);
-			// ÒÔp2µÄÖĞĞÄµãÏòÉÏ±éÀú»ñÈ¡µã¼¯ºÏ
-			p2UpChanel = getUpChanel(point2, 0, pieceHeight);
-			Map<Point, Point> upLinkPoints = getXLinkPoints(p1UpChanel,
-				p2UpChanel, pieceHeight);
-			// ÏòÏÂ±éÀú, ²»³¬¹ıBoard(ÓĞ·½¿éµÄµØ·½)µÄ±ß¿ò
-			// ÒÔp1ÖĞĞÄµãÏòÏÂ±éÀú»ñÈ¡µã¼¯ºÏ
-			p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
-			// ÒÔp2ÖĞĞÄµãÏòÏÂ±éÀú»ñÈ¡µã¼¯ºÏ
-			p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
-			Map<Point, Point> downLinkPoints = getXLinkPoints(p1DownChanel,
-				p2DownChanel, pieceHeight);
-			result.putAll(upLinkPoints);
-			result.putAll(downLinkPoints);
-		}
-		// p1¡¢p2Î»ÓÚÍ¬Ò»ÁĞ²»ÄÜÖ±½ÓÏàÁ¬
-		if (point1.x == point2.x)
-		{
-			// ÔÚÍ¬Ò»ÁĞ
-			// Ïò×ó±éÀú
-			// ÒÔp1µÄÖĞĞÄµãÏò×ó±éÀú»ñÈ¡µã¼¯ºÏ
-			List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
-			// ÒÔp2µÄÖĞĞÄµãÏò×ó±éÀú»ñÈ¡µã¼¯ºÏ
-			p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
-			Map<Point, Point> leftLinkPoints = getYLinkPoints(p1LeftChanel,
-				p2LeftChanel, pieceWidth);
-			// ÏòÓÒ±éÀú, ²»µÃ³¬¹ıBoardµÄ±ß¿ò£¨ÓĞ·½¿éµÄµØ·½£©
-			// ÒÔp1µÄÖĞĞÄµãÏòÓÒ±éÀú»ñÈ¡µã¼¯ºÏ
-			p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
-			// ÒÔp2µÄÖĞĞÄµãÏòÓÒ±éÀú»ñÈ¡µã¼¯ºÏ
-			List<Point> p2RightChanel = getRightChanel(point2, widthMax,
-				pieceWidth);
-			Map<Point, Point> rightLinkPoints = getYLinkPoints(p1RightChanel,
-				p2RightChanel, pieceWidth);
-			result.putAll(leftLinkPoints);
-			result.putAll(rightLinkPoints);
-		}
-		// point2Î»ÓÚpoint1µÄÓÒÉÏ½Ç
-		if (isRightUp(point1, point2))
-		{		
-			// »ñÈ¡point1ÏòÉÏ±éÀú, point2ÏòÏÂ±éÀúÊ±ºáÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> upDownLinkPoints = getXLinkPoints(p1UpChanel,
-				p2DownChanel, pieceWidth);
-			// »ñÈ¡point1ÏòÓÒ±éÀú, point2Ïò×ó±éÀúÊ±×İÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> rightLeftLinkPoints = getYLinkPoints(
-				p1RightChanel, p2LeftChanel, pieceHeight);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÉÏÍ¨µÀ
-			p1UpChanel = getUpChanel(point1, 0, pieceHeight);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÉÏÍ¨µÀ
-			p2UpChanel = getUpChanel(point2, 0, pieceHeight);
-			// »ñÈ¡point1ÏòÉÏ±éÀú, point2ÏòÉÏ±éÀúÊ±ºáÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> upUpLinkPoints = getXLinkPoints(p1UpChanel,
-				p2UpChanel, pieceWidth);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÏÂÍ¨µÀ
-			p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÏÂÍ¨µÀ
-			p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
-			// »ñÈ¡point1ÏòÏÂ±éÀú, point2ÏòÏÂ±éÀúÊ±ºáÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> downDownLinkPoints = getXLinkPoints(p1DownChanel,
-				p2DownChanel, pieceWidth);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÓÒÍ¨µÀ
-			p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÓÒÍ¨µÀ
-			List<Point> p2RightChanel = getRightChanel(point2, widthMax,
-				pieceWidth);
-			// »ñÈ¡point1ÏòÓÒ±éÀú, point2ÏòÓÒ±éÀúÊ±×İÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> rightRightLinkPoints = getYLinkPoints(
-				p1RightChanel, p2RightChanel, pieceHeight);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏò×óÍ¨µÀ
-			List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏò×óÍ¨µÀ
-			p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
-			// »ñÈ¡point1Ïò×ó±éÀú, point2ÏòÓÒ±éÀúÊ±×İÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> leftLeftLinkPoints = getYLinkPoints(p1LeftChanel,
-				p2LeftChanel, pieceHeight);
-			result.putAll(upDownLinkPoints);
-			result.putAll(rightLeftLinkPoints);
-			result.putAll(upUpLinkPoints);
-			result.putAll(downDownLinkPoints);
-			result.putAll(rightRightLinkPoints);
-			result.putAll(leftLeftLinkPoints);
-		}
-		// point2Î»ÓÚpoint1µÄÓÒÏÂ½Ç
-		if (isRightDown(point1, point2))
-		{
-			// »ñÈ¡point1ÏòÏÂ±éÀú, point2ÏòÉÏ±éÀúÊ±ºáÏò¿ÉÁ¬½ÓµÄµã
-			Map<Point, Point> downUpLinkPoints = getXLinkPoints(p1DownChanel,
-				p2UpChanel, pieceWidth);
-			// »ñÈ¡point1ÏòÓÒ±éÀú, point2Ïò×ó±éÀúÊ±×İÏò¿ÉÁ¬½ÓµÄµã
-			Map<Point, Point> rightLeftLinkPoints = getYLinkPoints(
-				p1RightChanel, p2LeftChanel, pieceHeight);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÉÏÍ¨µÀ
-			p1UpChanel = getUpChanel(point1, 0, pieceHeight);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÉÏÍ¨µÀ
-			p2UpChanel = getUpChanel(point2, 0, pieceHeight);
-			// »ñÈ¡point1ÏòÉÏ±éÀú, point2ÏòÉÏ±éÀúÊ±ºáÏò¿ÉÁ¬½ÓµÄµã
-			Map<Point, Point> upUpLinkPoints = getXLinkPoints(p1UpChanel,
-				p2UpChanel, pieceWidth);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÏÂÍ¨µÀ
-			p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÏÂÍ¨µÀ
-			p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
-			// »ñÈ¡point1ÏòÏÂ±éÀú, point2ÏòÏÂ±éÀúÊ±ºáÏò¿ÉÁ¬½ÓµÄµã
-			Map<Point, Point> downDownLinkPoints = getXLinkPoints(p1DownChanel,
-				p2DownChanel, pieceWidth);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏò×óÍ¨µÀ
-			List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏò×óÍ¨µÀ
-			p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
-			// »ñÈ¡point1Ïò×ó±éÀú, point2Ïò×ó±éÀúÊ±×İÏò¿ÉÁ¬½ÓµÄµã
-			Map<Point, Point> leftLeftLinkPoints = getYLinkPoints(p1LeftChanel,
-				p2LeftChanel, pieceHeight);
-			// »ñÈ¡ÒÔp1ÎªÖĞĞÄµÄÏòÓÒÍ¨µÀ
-			p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
-			// »ñÈ¡ÒÔp2ÎªÖĞĞÄµÄÏòÓÒÍ¨µÀ
-			List<Point> p2RightChanel = getRightChanel(point2, widthMax,
-				pieceWidth);
-			// »ñÈ¡point1ÏòÓÒ±éÀú, point2ÏòÓÒ±éÀúÊ±×İÏò¿ÉÒÔÁ¬½ÓµÄµã
-			Map<Point, Point> rightRightLinkPoints = getYLinkPoints(
-				p1RightChanel, p2RightChanel, pieceHeight);
-			result.putAll(downUpLinkPoints);
-			result.putAll(rightLeftLinkPoints);
-			result.putAll(upUpLinkPoints);
-			result.putAll(downDownLinkPoints);
-			result.putAll(leftLeftLinkPoints);
-			result.putAll(rightRightLinkPoints);
-		}
-		return result;
-	}
-	
-	/**
-	 * »ñÈ¡p1ºÍp2Ö®¼ä×î¶ÌµÄÁ¬½ÓĞÅÏ¢
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param turns ·Å×ªÕÛµãµÄmap
-	 * @param shortDistance Á½µãÖ®¼äµÄ×î¶Ì¾àÀë
-	 * @return p1ºÍp2Ö®¼ä×î¶ÌµÄÁ¬½ÓĞÅÏ¢
-	 */
-	private LinkInfo getShortcut(Point p1, Point p2, Map<Point, Point> turns,
-		int shortDistance)
-	{
-		List<LinkInfo> infos = new ArrayList<LinkInfo>();
-		// ±éÀú½á¹ûMap,
-		for (Point point1 : turns.keySet())
-		{
-			Point point2 = turns.get(point1);
-			// ½«×ªÕÛµãÓëÑ¡Ôñµã·â×°³ÉLinkInfo¶ÔÏó, ·Åµ½List¼¯ºÏÖĞ
-			infos.add(new LinkInfo(p1, point1, point2, p2));
-		}
-		return getShortcut(infos, shortDistance);
-	}
-	
-	/**
-	 * ´ÓinfosÖĞ»ñÈ¡Á¬½ÓÏß×î¶ÌµÄÄÇ¸öLinkInfo¶ÔÏó
-	 * 
-	 * @param infos
-	 * @return Á¬½ÓÏß×î¶ÌµÄÄÇ¸öLinkInfo¶ÔÏó
-	 */
-	private LinkInfo getShortcut(List<LinkInfo> infos, int shortDistance)
-	{
-		int temp1 = 0;
-		LinkInfo result = null;
-		for (int i = 0; i < infos.size(); i++)
-		{
-			LinkInfo info = infos.get(i);
-			// ¼ÆËã³ö¼¸¸öµãµÄ×Ü¾àÀë
-			int distance = countAll(info.getLinkPoints());
-			// ½«Ñ­»·µÚÒ»¸öµÄ²î¾àÓÃtemp1±£´æ
-			if (i == 0)
-			{
-				temp1 = distance - shortDistance;
-				result = info;
-			}
-			// Èç¹ûÏÂÒ»´ÎÑ­»·µÄÖµ±Ètemp1µÄ»¹Ğ¡, ÔòÓÃµ±Ç°µÄÖµ×÷Îªtemp1
-			if (distance - shortDistance < temp1)
-			{
-				temp1 = distance - shortDistance;
-				result = info;
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * ¼ÆËãList<Point>ÖĞËùÓĞµãµÄ¾àÀë×ÜºÍ
-	 * 
-	 * @param points ĞèÒª¼ÆËãµÄÁ¬½Óµã
-	 * @return ËùÓĞµãµÄ¾àÀëµÄ×ÜºÍ
-	 */
-	private int countAll(List<Point> points)
-	{
-		int result = 0;
-		for (int i = 0; i < points.size() - 1; i++)
-		{
-			// »ñÈ¡µÚi¸öµã
-			Point point1 = points.get(i);
-			// »ñÈ¡µÚi + 1¸öµã
-			Point point2 = points.get(i + 1);
-			// ¼ÆËãµÚi¸öµãÓëµÚi + 1¸öµãµÄ¾àÀë£¬²¢Ìí¼Óµ½×Ü¾àÀëÖĞ
-			result += getDistance(point1, point2);
-		}
-		return result;
-	}
-	
-	/**
-	 * »ñÈ¡Á½¸öLinkPointÖ®¼äµÄ×î¶Ì¾àÀë
-	 * 
-	 * @param p1 µÚÒ»¸öµã
-	 * @param p2 µÚ¶ş¸öµã
-	 * @return Á½¸öµãµÄ¾àÀë¾àÀë×ÜºÍ
-	 */
-	private int getDistance(Point p1, Point p2)
-	{
-		int xDistance = Math.abs(p1.x - p2.x);
-		int yDistance = Math.abs(p1.y - p2.y);
-		return xDistance + yDistance;
-	}
-	
-	/**
-	 * ±éÀúÁ½¸ö¼¯ºÏ, ÏÈÅĞ¶ÏµÚÒ»¸ö¼¯ºÏµÄÔªËØµÄx×ù±êÓëÁíÒ»¸ö¼¯ºÏÖĞµÄÔªËØx×ù±êÏàÍ¬(×İÏò), 
-	 * Èç¹ûÏàÍ¬, ¼´ÔÚÍ¬Ò»ÁĞ, ÔÙÅĞ¶ÏÊÇ·ñÓĞÕÏ°­, Ã»ÓĞÔò¼Óµ½½á¹ûµÄMapÖĞÈ¥
-	 * 
-	 * @param p1Chanel
-	 * @param p2Chanel
-	 * @param pieceHeight
-	 * @return
-	 */
-	private Map<Point, Point> getYLinkPoints(List<Point> p1Chanel,
-		List<Point> p2Chanel, int pieceHeight)
-	{
-		Map<Point, Point> result = new HashMap<Point, Point>();
-		for (int i = 0; i < p1Chanel.size(); i++)
-		{
-			Point temp1 = p1Chanel.get(i);
-			for (int j = 0; j < p2Chanel.size(); j++)
-			{
-				Point temp2 = p2Chanel.get(j);
-				// Èç¹ûx×ù±êÏàÍ¬(ÔÚÍ¬Ò»ÁĞ)
-				if (temp1.x == temp2.x)
-				{
-					// Ã»ÓĞÕÏ°­, ·Åµ½mapÖĞÈ¥
-					if (!isYBlock(temp1, temp2, pieceHeight))
-					{
-						result.put(temp1, temp2);
-					}
-				}
-			}
-		}
-		return result;
-	}
-	
-	/**
-	 * ±éÀúÁ½¸ö¼¯ºÏ, ÏÈÅĞ¶ÏµÚÒ»¸ö¼¯ºÏµÄÔªËØµÄy×ù±êÓëÁíÒ»¸ö¼¯ºÏÖĞµÄÔªËØy×ù±êÏàÍ¬(ºáÏò),
-	 * Èç¹ûÏàÍ¬, ¼´ÔÚÍ¬Ò»ĞĞ, ÔÙÅĞ¶ÏÊÇ·ñÓĞÕÏ°­, Ã»ÓĞ Ôò¼Óµ½½á¹ûµÄmapÖĞÈ¥
-	 * 
-	 * @param p1Chanel
-	 * @param p2Chanel
-	 * @param pieceWidth
-	 * @return ´æ·Å¿ÉÒÔºáÏòÖ±ÏßÁ¬½ÓµÄÁ¬½ÓµãµÄ¼üÖµ¶Ô
-	 */
-	private Map<Point, Point> getXLinkPoints(List<Point> p1Chanel,
-		List<Point> p2Chanel, int pieceWidth)
-	{
-		Map<Point, Point> result = new HashMap<Point, Point>();
-		for (int i = 0; i < p1Chanel.size(); i++)
-		{
-			// ´ÓµÚÒ»Í¨µÀÖĞÈ¡Ò»¸öµã
-			Point temp1 = p1Chanel.get(i);
-			// ÔÙ±éÀúµÚ¶ş¸öÍ¨µÀ, ¿´ÏÂµÚ¶şÍ¨µÀÖĞÊÇ·ñÓĞµã¿ÉÒÔÓëtemp1ºáÏòÏàÁ¬
-			for (int j = 0; j < p2Chanel.size(); j++)
-			{
-				Point temp2 = p2Chanel.get(j);
-				// Èç¹ûy×ù±êÏàÍ¬(ÔÚÍ¬Ò»ĞĞ), ÔÙÅĞ¶ÏËüÃÇÖ®¼äÊÇ·ñÓĞÖ±½ÓÕÏ°­
-				if (temp1.y == temp2.y)
-				{
-					if (!isXBlock(temp1, temp2, pieceWidth))
-					{
-						// Ã»ÓĞÕÏ°­ÔòÖ±½Ó¼Óµ½½á¹ûµÄmapÖĞ
-						result.put(temp1, temp2);
-					}
-				}
-			}
-		}
-		return result;
-	}
+    // å®ç°æ¥å£çš„linkæ–¹æ³•
+    @Override
+    public LinkInfo link(Piece p1, Piece p2)
+    {
+        // ä¸¤ä¸ªPieceæ˜¯åŒä¸€ä¸ª, å³é€‰ä¸­äº†åŒä¸€ä¸ªæ–¹å—, è¿”å›null
+        if (p1.equals(p2))
+            return null;
+        // å¦‚æœp1çš„å›¾ç‰‡ä¸p2çš„å›¾ç‰‡ä¸ç›¸åŒ, åˆ™è¿”å›null
+        if (!p1.isSameImage(p2))
+            return null;
+        // å¦‚æœp2åœ¨p1çš„å·¦è¾¹, åˆ™éœ€è¦é‡æ–°æ‰§è¡Œæœ¬æ–¹æ³•, ä¸¤ä¸ªå‚æ•°äº’æ¢
+        if (p2.getIndexX() < p1.getIndexX())
+            return link(p2, p1);
+        // è·å–p1çš„ä¸­å¿ƒç‚¹
+        Point p1Point = p1.getCenter();
+        // è·å–p2çš„ä¸­å¿ƒç‚¹
+        Point p2Point = p2.getCenter();
+        // å¦‚æœä¸¤ä¸ªPieceåœ¨åŒä¸€è¡Œ
+        if (p1.getIndexY() == p2.getIndexY())
+        {
+            // å®ƒä»¬åœ¨åŒä¸€è¡Œå¹¶å¯ä»¥ç›¸è¿
+            if (!isXBlock(p1Point, p2Point, GameConf.PIECE_WIDTH))
+            {
+                return new LinkInfo(p1Point, p2Point);
+            }
+        }
+        // å¦‚æœä¸¤ä¸ªPieceåœ¨åŒä¸€åˆ—
+        if (p1.getIndexX() == p2.getIndexX())
+        {
+            if (!isYBlock(p1Point, p2Point, GameConf.PIECE_HEIGHT))
+            {
+                // å®ƒä»¬ä¹‹é—´æ²¡æœ‰çœŸæ¥éšœç¢, æ²¡æœ‰è½¬æŠ˜ç‚¹
+                return new LinkInfo(p1Point, p2Point);
+            }
+        }
+        // æœ‰ä¸€ä¸ªè½¬æŠ˜ç‚¹çš„æƒ…å†µ
+        // è·å–ä¸¤ä¸ªç‚¹çš„ç›´è§’ç›¸è¿çš„ç‚¹, å³åªæœ‰ä¸€ä¸ªè½¬æŠ˜ç‚¹
+        Point cornerPoint = getCornerPoint(p1Point, p2Point,
+                GameConf.PIECE_WIDTH, GameConf.PIECE_HEIGHT);
+        if (cornerPoint != null)
+        {
+            return new LinkInfo(p1Point, cornerPoint, p2Point);
+        }
+        // è¯¥mapçš„keyå­˜æ”¾ç¬¬ä¸€ä¸ªè½¬æŠ˜ç‚¹, valueå­˜æ”¾ç¬¬äºŒä¸ªè½¬æŠ˜ç‚¹,
+        // mapçš„size()è¯´æ˜æœ‰å¤šå°‘ç§å¯ä»¥è¿çš„æ–¹å¼
+        Map<Point, Point> turns = getLinkPoints(p1Point, p2Point,
+                GameConf.PIECE_WIDTH, GameConf.PIECE_WIDTH);
+        if (turns.size() != 0)
+        {
+            return getShortcut(p1Point, p2Point, turns,
+                    getDistance(p1Point, p2Point));
+        }
+        return null;
+    }
 
-	/**
-	 * ÅĞ¶Ïpoint2ÊÇ·ñÔÚpoint1µÄ×óÉÏ½Ç
-	 * 
-	 * @param point1
-	 * @param point2
-	 * @return p2Î»ÓÚp1µÄ×óÉÏ½ÇÊ±·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isLeftUp(Point point1, Point point2)
-	{
-		return (point2.x < point1.x && point2.y < point1.y);
-	}
-	
-	/**
-	 * ÅĞ¶Ïpoint2ÊÇ·ñÔÚpoint1µÄ×óÏÂ½Ç
-	 * 
-	 * @param point1
-	 * @param point2
-	 * @return p2Î»ÓÚp1µÄ×óÏÂ½ÇÊ±·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isLeftDown(Point point1, Point point2)
-	{
-		return (point2.x < point1.x && point2.y > point1.y);
-	}
-	
-	/**
-	 * ÅĞ¶Ïpoint2ÊÇ·ñÔÚpoint1µÄÓÒÉÏ½Ç
-	 * 
-	 * @param point1
-	 * @param point2
-	 * @return p2Î»ÓÚp1µÄÓÒÉÏ½ÇÊ±·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isRightUp(Point point1, Point point2)
-	{
-		return (point2.x > point1.x && point2.y < point1.y);
-	}
-	
-	/**
-	 * ÅĞ¶Ïpoint2ÊÇ·ñÔÚpoint1µÄÓÒÏÂ½Ç
-	 * 
-	 * @param point1
-	 * @param point2
-	 * @return p2Î»ÓÚp1µÄÓÒÏÂ½ÇÊ±·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isRightDown(Point point1, Point point2)
-	{
-		return (point2.x > point1.x && point2.y > point1.y);
-	}
+    /**
+     * è·å–ä¸¤ä¸ªè½¬æŠ˜ç‚¹çš„æƒ…å†µ
+     *
+     * @param point1
+     * @param point2
+     * @return Mapå¯¹è±¡çš„æ¯ä¸ªkey-valueå¯¹ä»£è¡¨ä¸€ç§è¿æ¥æ–¹å¼ï¼Œ
+     *   å…¶ä¸­keyã€valueåˆ†åˆ«ä»£è¡¨ç¬¬1ä¸ªã€ç¬¬2ä¸ªè¿æ¥ç‚¹
+     */
+    private Map<Point, Point> getLinkPoints(Point point1, Point point2,
+                                            int pieceWidth, int pieceHeight)
+    {
+        Map<Point, Point> result = new HashMap<Point, Point>();
+        // è·å–ä»¥point1ä¸ºä¸­å¿ƒçš„å‘ä¸Š, å‘å³, å‘ä¸‹çš„é€šé“
+        List<Point> p1UpChanel = getUpChanel(point1, point2.y, pieceHeight);
+        List<Point> p1RightChanel = getRightChanel(point1, point2.x, pieceWidth);
+        List<Point> p1DownChanel = getDownChanel(point1, point2.y, pieceHeight);
+        // è·å–ä»¥point2ä¸ºä¸­å¿ƒçš„å‘ä¸‹, å‘å·¦, å‘ä¸Šçš„é€šé“
+        List<Point> p2DownChanel = getDownChanel(point2, point1.y, pieceHeight);
+        List<Point> p2LeftChanel = getLeftChanel(point2, point1.x, pieceWidth);
+        List<Point> p2UpChanel = getUpChanel(point2, point1.y, pieceHeight);
+        // è·å–Boardçš„æœ€å¤§é«˜åº¦
+        int heightMax = (this.config.getYSize() + 1) * pieceHeight
+                + this.config.getBeginImageY();
+        // è·å–Boardçš„æœ€å¤§å®½åº¦
+        int widthMax = (this.config.getXSize() + 1) * pieceWidth
+                + this.config.getBeginImageX();
+        // å…ˆç¡®å®šä¸¤ä¸ªç‚¹çš„å…³ç³»
+        // point2åœ¨point1çš„å·¦ä¸Šè§’æˆ–è€…å·¦ä¸‹è§’
+        if (isLeftUp(point1, point2) || isLeftDown(point1, point2))
+        {
+            // å‚æ•°æ¢ä½, è°ƒç”¨æœ¬æ–¹æ³•
+            return getLinkPoints(point2, point1, pieceWidth, pieceHeight);
+        }
+        // p1ã€p2ä½äºåŒä¸€è¡Œä¸èƒ½ç›´æ¥ç›¸è¿
+        if (point1.y == point2.y)
+        {
+            // åœ¨åŒä¸€è¡Œ
+            // å‘ä¸Šéå†
+            // ä»¥p1çš„ä¸­å¿ƒç‚¹å‘ä¸Šéå†è·å–ç‚¹é›†åˆ
+            p1UpChanel = getUpChanel(point1, 0, pieceHeight);
+            // ä»¥p2çš„ä¸­å¿ƒç‚¹å‘ä¸Šéå†è·å–ç‚¹é›†åˆ
+            p2UpChanel = getUpChanel(point2, 0, pieceHeight);
+            Map<Point, Point> upLinkPoints = getXLinkPoints(p1UpChanel,
+                    p2UpChanel, pieceHeight);
+            // å‘ä¸‹éå†, ä¸è¶…è¿‡Board(æœ‰æ–¹å—çš„åœ°æ–¹)çš„è¾¹æ¡†
+            // ä»¥p1ä¸­å¿ƒç‚¹å‘ä¸‹éå†è·å–ç‚¹é›†åˆ
+            p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
+            // ä»¥p2ä¸­å¿ƒç‚¹å‘ä¸‹éå†è·å–ç‚¹é›†åˆ
+            p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
+            Map<Point, Point> downLinkPoints = getXLinkPoints(p1DownChanel,
+                    p2DownChanel, pieceHeight);
+            result.putAll(upLinkPoints);
+            result.putAll(downLinkPoints);
+        }
+        // p1ã€p2ä½äºåŒä¸€åˆ—ä¸èƒ½ç›´æ¥ç›¸è¿
+        if (point1.x == point2.x)
+        {
+            // åœ¨åŒä¸€åˆ—
+            // å‘å·¦éå†
+            // ä»¥p1çš„ä¸­å¿ƒç‚¹å‘å·¦éå†è·å–ç‚¹é›†åˆ
+            List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
+            // ä»¥p2çš„ä¸­å¿ƒç‚¹å‘å·¦éå†è·å–ç‚¹é›†åˆ
+            p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
+            Map<Point, Point> leftLinkPoints = getYLinkPoints(p1LeftChanel,
+                    p2LeftChanel, pieceWidth);
+            // å‘å³éå†, ä¸å¾—è¶…è¿‡Boardçš„è¾¹æ¡†ï¼ˆæœ‰æ–¹å—çš„åœ°æ–¹ï¼‰
+            // ä»¥p1çš„ä¸­å¿ƒç‚¹å‘å³éå†è·å–ç‚¹é›†åˆ
+            p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
+            // ä»¥p2çš„ä¸­å¿ƒç‚¹å‘å³éå†è·å–ç‚¹é›†åˆ
+            List<Point> p2RightChanel = getRightChanel(point2, widthMax,
+                    pieceWidth);
+            Map<Point, Point> rightLinkPoints = getYLinkPoints(p1RightChanel,
+                    p2RightChanel, pieceWidth);
+            result.putAll(leftLinkPoints);
+            result.putAll(rightLinkPoints);
+        }
+        // point2ä½äºpoint1çš„å³ä¸Šè§’
+        if (isRightUp(point1, point2))
+        {
+            // è·å–point1å‘ä¸Šéå†, point2å‘ä¸‹éå†æ—¶æ¨ªå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> upDownLinkPoints = getXLinkPoints(p1UpChanel,
+                    p2DownChanel, pieceWidth);
+            // è·å–point1å‘å³éå†, point2å‘å·¦éå†æ—¶çºµå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> rightLeftLinkPoints = getYLinkPoints(
+                    p1RightChanel, p2LeftChanel, pieceHeight);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘ä¸Šé€šé“
+            p1UpChanel = getUpChanel(point1, 0, pieceHeight);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘ä¸Šé€šé“
+            p2UpChanel = getUpChanel(point2, 0, pieceHeight);
+            // è·å–point1å‘ä¸Šéå†, point2å‘ä¸Šéå†æ—¶æ¨ªå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> upUpLinkPoints = getXLinkPoints(p1UpChanel,
+                    p2UpChanel, pieceWidth);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘ä¸‹é€šé“
+            p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘ä¸‹é€šé“
+            p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
+            // è·å–point1å‘ä¸‹éå†, point2å‘ä¸‹éå†æ—¶æ¨ªå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> downDownLinkPoints = getXLinkPoints(p1DownChanel,
+                    p2DownChanel, pieceWidth);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘å³é€šé“
+            p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘å³é€šé“
+            List<Point> p2RightChanel = getRightChanel(point2, widthMax,
+                    pieceWidth);
+            // è·å–point1å‘å³éå†, point2å‘å³éå†æ—¶çºµå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> rightRightLinkPoints = getYLinkPoints(
+                    p1RightChanel, p2RightChanel, pieceHeight);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘å·¦é€šé“
+            List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘å·¦é€šé“
+            p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
+            // è·å–point1å‘å·¦éå†, point2å‘å³éå†æ—¶çºµå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> leftLeftLinkPoints = getYLinkPoints(p1LeftChanel,
+                    p2LeftChanel, pieceHeight);
+            result.putAll(upDownLinkPoints);
+            result.putAll(rightLeftLinkPoints);
+            result.putAll(upUpLinkPoints);
+            result.putAll(downDownLinkPoints);
+            result.putAll(rightRightLinkPoints);
+            result.putAll(leftLeftLinkPoints);
+        }
+        // point2ä½äºpoint1çš„å³ä¸‹è§’
+        if (isRightDown(point1, point2))
+        {
+            // è·å–point1å‘ä¸‹éå†, point2å‘ä¸Šéå†æ—¶æ¨ªå‘å¯è¿æ¥çš„ç‚¹
+            Map<Point, Point> downUpLinkPoints = getXLinkPoints(p1DownChanel,
+                    p2UpChanel, pieceWidth);
+            // è·å–point1å‘å³éå†, point2å‘å·¦éå†æ—¶çºµå‘å¯è¿æ¥çš„ç‚¹
+            Map<Point, Point> rightLeftLinkPoints = getYLinkPoints(
+                    p1RightChanel, p2LeftChanel, pieceHeight);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘ä¸Šé€šé“
+            p1UpChanel = getUpChanel(point1, 0, pieceHeight);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘ä¸Šé€šé“
+            p2UpChanel = getUpChanel(point2, 0, pieceHeight);
+            // è·å–point1å‘ä¸Šéå†, point2å‘ä¸Šéå†æ—¶æ¨ªå‘å¯è¿æ¥çš„ç‚¹
+            Map<Point, Point> upUpLinkPoints = getXLinkPoints(p1UpChanel,
+                    p2UpChanel, pieceWidth);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘ä¸‹é€šé“
+            p1DownChanel = getDownChanel(point1, heightMax, pieceHeight);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘ä¸‹é€šé“
+            p2DownChanel = getDownChanel(point2, heightMax, pieceHeight);
+            // è·å–point1å‘ä¸‹éå†, point2å‘ä¸‹éå†æ—¶æ¨ªå‘å¯è¿æ¥çš„ç‚¹
+            Map<Point, Point> downDownLinkPoints = getXLinkPoints(p1DownChanel,
+                    p2DownChanel, pieceWidth);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘å·¦é€šé“
+            List<Point> p1LeftChanel = getLeftChanel(point1, 0, pieceWidth);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘å·¦é€šé“
+            p2LeftChanel = getLeftChanel(point2, 0, pieceWidth);
+            // è·å–point1å‘å·¦éå†, point2å‘å·¦éå†æ—¶çºµå‘å¯è¿æ¥çš„ç‚¹
+            Map<Point, Point> leftLeftLinkPoints = getYLinkPoints(p1LeftChanel,
+                    p2LeftChanel, pieceHeight);
+            // è·å–ä»¥p1ä¸ºä¸­å¿ƒçš„å‘å³é€šé“
+            p1RightChanel = getRightChanel(point1, widthMax, pieceWidth);
+            // è·å–ä»¥p2ä¸ºä¸­å¿ƒçš„å‘å³é€šé“
+            List<Point> p2RightChanel = getRightChanel(point2, widthMax,
+                    pieceWidth);
+            // è·å–point1å‘å³éå†, point2å‘å³éå†æ—¶çºµå‘å¯ä»¥è¿æ¥çš„ç‚¹
+            Map<Point, Point> rightRightLinkPoints = getYLinkPoints(
+                    p1RightChanel, p2RightChanel, pieceHeight);
+            result.putAll(downUpLinkPoints);
+            result.putAll(rightLeftLinkPoints);
+            result.putAll(upUpLinkPoints);
+            result.putAll(downDownLinkPoints);
+            result.putAll(leftLeftLinkPoints);
+            result.putAll(rightRightLinkPoints);
+        }
+        return result;
+    }
 
-	/**
-	 * »ñÈ¡Á½¸ö²»ÔÚÍ¬Ò»ĞĞ»òÕßÍ¬Ò»ÁĞµÄ×ù±êµãµÄÖ±½ÇÁ¬½Óµã, ¼´Ö»ÓĞÒ»¸ö×ªÕÛµã
-	 * 
-	 * @param point1 µÚÒ»¸öµã
-	 * @param point2 µÚ¶ş¸öµã
-	 * @return Á½¸ö²»ÔÚÍ¬Ò»ĞĞ»òÕßÍ¬Ò»ÁĞµÄ×ù±êµãµÄÖ±½ÇÁ¬½Óµã
-	 */
-	private Point getCornerPoint(Point point1, Point point2, int pieceWidth,
-		int pieceHeight)
-	{
-		// ÏÈÅĞ¶ÏÕâÁ½¸öµãµÄÎ»ÖÃ¹ØÏµ
-		// point2ÔÚpoint1µÄ×óÉÏ½Ç, point2ÔÚpoint1µÄ×óÏÂ½Ç
-		if (isLeftUp(point1, point2) || isLeftDown(point1, point2))
-		{
-			// ²ÎÊı»»Î», ÖØĞÂµ÷ÓÃ±¾·½·¨
-			return getCornerPoint(point2, point1, pieceWidth, pieceHeight);
-		}
-		// »ñÈ¡p1ÏòÓÒ, ÏòÉÏ, ÏòÏÂµÄÈı¸öÍ¨µÀ
-		List<Point> point1RightChanel = getRightChanel(point1, point2.x,
-			pieceWidth);
-		List<Point> point1UpChanel = getUpChanel(point1, point2.y, pieceHeight);
-		List<Point> point1DownChanel = getDownChanel(point1, point2.y,
-			pieceHeight);
-		// »ñÈ¡p2ÏòÏÂ, Ïò×ó, ÏòÏÂµÄÈı¸öÍ¨µÀ
-		List<Point> point2DownChanel = getDownChanel(point2, point1.y,
-			pieceHeight);
-		List<Point> point2LeftChanel = getLeftChanel(point2, point1.x,
-			pieceWidth);
-		List<Point> point2UpChanel = getUpChanel(point2, point1.y, pieceHeight);
-		if (isRightUp(point1, point2))
-		{
-			// point2ÔÚpoint1µÄÓÒÉÏ½Ç
-			// »ñÈ¡p1ÏòÓÒºÍp2ÏòÏÂµÄ½»µã
-			Point linkPoint1 = getWrapPoint(point1RightChanel, point2DownChanel);
-			// »ñÈ¡p1ÏòÉÏºÍp2Ïò×óµÄ½»µã
-			Point linkPoint2 = getWrapPoint(point1UpChanel, point2LeftChanel);
-			// ·µ»ØÆäÖĞÒ»¸ö½»µã, Èç¹ûÃ»ÓĞ½»µã, Ôò·µ»Ønull
-			return (linkPoint1 == null) ? linkPoint2 : linkPoint1;
-		}
-		if (isRightDown(point1, point2))
-		{
-			// point2ÔÚpoint1µÄÓÒÏÂ½Ç
-			// »ñÈ¡p1ÏòÏÂºÍp2Ïò×óµÄ½»µã
-			Point linkPoint1 = getWrapPoint(point1DownChanel, point2LeftChanel);
-			// »ñÈ¡p1ÏòÓÒºÍp2ÏòÏÂµÄ½»µã
-			Point linkPoint2 = getWrapPoint(point1RightChanel, point2UpChanel);
-			return (linkPoint1 == null) ? linkPoint2 : linkPoint1;
-		}
-		return null;
-	}
+    /**
+     * è·å–p1å’Œp2ä¹‹é—´æœ€çŸ­çš„è¿æ¥ä¿¡æ¯
+     *
+     * @param p1
+     * @param p2
+     * @param turns æ”¾è½¬æŠ˜ç‚¹çš„map
+     * @param shortDistance ä¸¤ç‚¹ä¹‹é—´çš„æœ€çŸ­è·ç¦»
+     * @return p1å’Œp2ä¹‹é—´æœ€çŸ­çš„è¿æ¥ä¿¡æ¯
+     */
+    private LinkInfo getShortcut(Point p1, Point p2, Map<Point, Point> turns,
+                                 int shortDistance)
+    {
+        List<LinkInfo> infos = new ArrayList<LinkInfo>();
+        // éå†ç»“æœMap,
+        for (Point point1 : turns.keySet())
+        {
+            Point point2 = turns.get(point1);
+            // å°†è½¬æŠ˜ç‚¹ä¸é€‰æ‹©ç‚¹å°è£…æˆLinkInfoå¯¹è±¡, æ”¾åˆ°Listé›†åˆä¸­
+            infos.add(new LinkInfo(p1, point1, point2, p2));
+        }
+        return getShortcut(infos, shortDistance);
+    }
 
-	/**
-	 * ±éÀúÁ½¸öÍ¨µÀ, »ñÈ¡ËüÃÇµÄ½»µã
-	 * 
-	 * @param p1Chanel µÚÒ»¸öµãµÄÍ¨µÀ
-	 * @param p2Chanel µÚ¶ş¸öµãµÄÍ¨µÀ
-	 * @return Á½¸öÍ¨µÀÓĞ½»µã£¬·µ»Ø½»µã£¬·ñÔò·µ»Ønull
-	 */
-	private Point getWrapPoint(List<Point> p1Chanel, List<Point> p2Chanel)
-	{
-		for (int i = 0; i < p1Chanel.size(); i++)
-		{
-			Point temp1 = p1Chanel.get(i);
-			for (int j = 0; j < p2Chanel.size(); j++)
-			{
-				Point temp2 = p2Chanel.get(j);
-				if (temp1.equals(temp2))
-				{
-					// Èç¹ûÁ½¸öListÖĞÓĞÔªËØÓĞÍ¬Ò»¸ö, ±íÃ÷ÕâÁ½¸öÍ¨µÀÓĞ½»µã
-					return temp1;
-				}
-			}
-		}
-		return null;
-	}
+    /**
+     * ä»infosä¸­è·å–è¿æ¥çº¿æœ€çŸ­çš„é‚£ä¸ªLinkInfoå¯¹è±¡
+     *
+     * @param infos
+     * @return è¿æ¥çº¿æœ€çŸ­çš„é‚£ä¸ªLinkInfoå¯¹è±¡
+     */
+    private LinkInfo getShortcut(List<LinkInfo> infos, int shortDistance)
+    {
+        int temp1 = 0;
+        LinkInfo result = null;
+        for (int i = 0; i < infos.size(); i++)
+        {
+            LinkInfo info = infos.get(i);
+            // è®¡ç®—å‡ºå‡ ä¸ªç‚¹çš„æ€»è·ç¦»
+            int distance = countAll(info.getLinkPoints());
+            // å°†å¾ªç¯ç¬¬ä¸€ä¸ªçš„å·®è·ç”¨temp1ä¿å­˜
+            if (i == 0)
+            {
+                temp1 = distance - shortDistance;
+                result = info;
+            }
+            // å¦‚æœä¸‹ä¸€æ¬¡å¾ªç¯çš„å€¼æ¯”temp1çš„è¿˜å°, åˆ™ç”¨å½“å‰çš„å€¼ä½œä¸ºtemp1
+            if (distance - shortDistance < temp1)
+            {
+                temp1 = distance - shortDistance;
+                result = info;
+            }
+        }
+        return result;
+    }
 
-	/**
-	 * ÅĞ¶ÏÁ½¸öy×ù±êÏàÍ¬µÄµã¶ÔÏóÖ®¼äÊÇ·ñÓĞÕÏ°­, ÒÔp1ÎªÖĞĞÄÏòÓÒ±éÀú
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param pieceWidth
-	 * @return Á½¸öPieceÖ®¼äÓĞÕÏ°­·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isXBlock(Point p1, Point p2, int pieceWidth)
-	{
-		if (p2.x < p1.x)
-		{
-			// Èç¹ûp2ÔÚp1×ó±ß, µ÷»»²ÎÊıÎ»ÖÃµ÷ÓÃ±¾·½·¨
-			return isXBlock(p2, p1, pieceWidth);
-		}
-		for (int i = p1.x + pieceWidth; i < p2.x; i = i + pieceWidth)
-		{
-			if (hasPiece(i, p1.y))
-			{// ÓĞÕÏ°­
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * è®¡ç®—List<Point>ä¸­æ‰€æœ‰ç‚¹çš„è·ç¦»æ€»å’Œ
+     *
+     * @param points éœ€è¦è®¡ç®—çš„è¿æ¥ç‚¹
+     * @return æ‰€æœ‰ç‚¹çš„è·ç¦»çš„æ€»å’Œ
+     */
+    private int countAll(List<Point> points)
+    {
+        int result = 0;
+        for (int i = 0; i < points.size() - 1; i++)
+        {
+            // è·å–ç¬¬iä¸ªç‚¹
+            Point point1 = points.get(i);
+            // è·å–ç¬¬i + 1ä¸ªç‚¹
+            Point point2 = points.get(i + 1);
+            // è®¡ç®—ç¬¬iä¸ªç‚¹ä¸ç¬¬i + 1ä¸ªç‚¹çš„è·ç¦»ï¼Œå¹¶æ·»åŠ åˆ°æ€»è·ç¦»ä¸­
+            result += getDistance(point1, point2);
+        }
+        return result;
+    }
 
-	/**
-	 * ÅĞ¶ÏÁ½¸öx×ù±êÏàÍ¬µÄµã¶ÔÏóÖ®¼äÊÇ·ñÓĞÕÏ°­, ÒÔp1ÎªÖĞĞÄÏòÏÂ±éÀú
-	 * 
-	 * @param p1
-	 * @param p2
-	 * @param pieceHeight
-	 * @return Á½¸öPieceÖ®¼äÓĞÕÏ°­·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 */
-	private boolean isYBlock(Point p1, Point p2, int pieceHeight)
-	{
-		if (p2.y < p1.y)
-		{
-			// Èç¹ûp2ÔÚp1µÄÉÏÃæ, µ÷»»²ÎÊıÎ»ÖÃÖØĞÂµ÷ÓÃ±¾·½·¨
-			return isYBlock(p2, p1, pieceHeight);
-		}
-		for (int i = p1.y + pieceHeight; i < p2.y; i = i + pieceHeight)
-		{
-			if (hasPiece(p1.x, i))
-			{
-				// ÓĞÕÏ°­
-				return true;
-			}
-		}
-		return false;
-	}
+    /**
+     * è·å–ä¸¤ä¸ªLinkPointä¹‹é—´çš„æœ€çŸ­è·ç¦»
+     *
+     * @param p1 ç¬¬ä¸€ä¸ªç‚¹
+     * @param p2 ç¬¬äºŒä¸ªç‚¹
+     * @return ä¸¤ä¸ªç‚¹çš„è·ç¦»è·ç¦»æ€»å’Œ
+     */
+    private int getDistance(Point p1, Point p2)
+    {
+        int xDistance = Math.abs(p1.x - p2.x);
+        int yDistance = Math.abs(p1.y - p2.y);
+        return xDistance + yDistance;
+    }
 
-	/**
-	 * ÅĞ¶ÏGamePanelÖĞµÄx, y×ù±êÖĞÊÇ·ñÓĞPiece¶ÔÏó
-	 * 
-	 * @param x
-	 * @param y
-	 * @return true ±íÊ¾ÓĞ¸Ã×ù±êÓĞpiece¶ÔÏó false ±íÊ¾Ã»ÓĞ
-	 */
-	private boolean hasPiece(int x, int y)
-	{
-		if (findPiece(x, y) == null)
-			return false;
-		return true;
-	}
+    /**
+     * éå†ä¸¤ä¸ªé›†åˆ, å…ˆåˆ¤æ–­ç¬¬ä¸€ä¸ªé›†åˆçš„å…ƒç´ çš„xåº§æ ‡ä¸å¦ä¸€ä¸ªé›†åˆä¸­çš„å…ƒç´ xåº§æ ‡ç›¸åŒ(çºµå‘),
+     * å¦‚æœç›¸åŒ, å³åœ¨åŒä¸€åˆ—, å†åˆ¤æ–­æ˜¯å¦æœ‰éšœç¢, æ²¡æœ‰åˆ™åŠ åˆ°ç»“æœçš„Mapä¸­å»
+     *
+     * @param p1Chanel
+     * @param p2Chanel
+     * @param pieceHeight
+     * @return
+     */
+    private Map<Point, Point> getYLinkPoints(List<Point> p1Chanel,
+                                             List<Point> p2Chanel, int pieceHeight)
+    {
+        Map<Point, Point> result = new HashMap<Point, Point>();
+        for (int i = 0; i < p1Chanel.size(); i++)
+        {
+            Point temp1 = p1Chanel.get(i);
+            for (int j = 0; j < p2Chanel.size(); j++)
+            {
+                Point temp2 = p2Chanel.get(j);
+                // å¦‚æœxåº§æ ‡ç›¸åŒ(åœ¨åŒä¸€åˆ—)
+                if (temp1.x == temp2.x)
+                {
+                    // æ²¡æœ‰éšœç¢, æ”¾åˆ°mapä¸­å»
+                    if (!isYBlock(temp1, temp2, pieceHeight))
+                    {
+                        result.put(temp1, temp2);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
-	/**
-	 * ¸øÒ»¸öPoint¶ÔÏó,·µ»ØËüµÄ×ó±ßÍ¨µÀ
-	 * 
-	 * @param p
-	 * @param pieceWidth pieceÍ¼Æ¬µÄ¿í
-	 * @param min Ïò×ó±éÀúÊ±×îĞ¡µÄ½çÏŞ
-	 * @return ¸ø¶¨Point×ó±ßµÄÍ¨µÀ
-	 */
-	private List<Point> getLeftChanel(Point p, int min, int pieceWidth)
-	{
-		List<Point> result = new ArrayList<Point>();
-		// »ñÈ¡Ïò×óÍ¨µÀ, ÓÉÒ»¸öµãÏò×ó±éÀú, ²½³¤ÎªPieceÍ¼Æ¬µÄ¿í
-		for (int i = p.x - pieceWidth; i >= min
-			; i = i - pieceWidth)
-		{
-			// Óöµ½ÕÏ°­, ±íÊ¾Í¨µÀÒÑ¾­µ½¾¡Í·, Ö±½Ó·µ»Ø
-			if (hasPiece(i, p.y))
-			{
-				return result;
-			}
-			result.add(new Point(i, p.y));
-		}
-		return result;
-	}
-	
-	/**
-	 * ¸øÒ»¸öPoint¶ÔÏó, ·µ»ØËüµÄÓÒ±ßÍ¨µÀ
-	 * 
-	 * @param p
-	 * @param pieceWidth
-	 * @param max ÏòÓÒÊ±µÄ×îÓÒ½çÏŞ
-	 * @return ¸ø¶¨PointÓÒ±ßµÄÍ¨µÀ
-	 */
-	private List<Point> getRightChanel(Point p, int max, int pieceWidth)
-	{
-		List<Point> result = new ArrayList<Point>();
-		// »ñÈ¡ÏòÓÒÍ¨µÀ, ÓÉÒ»¸öµãÏòÓÒ±éÀú, ²½³¤ÎªPieceÍ¼Æ¬µÄ¿í
-		for (int i = p.x + pieceWidth; i <= max
-			; i = i + pieceWidth)
-		{
-			// Óöµ½ÕÏ°­, ±íÊ¾Í¨µÀÒÑ¾­µ½¾¡Í·, Ö±½Ó·µ»Ø
-			if (hasPiece(i, p.y))
-			{
-				return result;
-			}
-			result.add(new Point(i, p.y));
-		}
-		return result;
-	}
-	
-	/**
-	 * ¸øÒ»¸öPoint¶ÔÏó, ·µ»ØËüµÄÉÏÃæÍ¨µÀ
-	 * 
-	 * @param p
-	 * @param min ÏòÉÏ±éÀúÊ±×îĞ¡µÄ½çÏŞ
-	 * @param pieceHeight
-	 * @return ¸ø¶¨PointÉÏÃæµÄÍ¨µÀ
-	 */
-	private List<Point> getUpChanel(Point p, int min, int pieceHeight)
-	{
-		List<Point> result = new ArrayList<Point>();
-		// »ñÈ¡ÏòÉÏÍ¨µÀ, ÓÉÒ»¸öµãÏòÓÒ±éÀú, ²½³¤ÎªPieceÍ¼Æ¬µÄ¸ß
-		for (int i = p.y - pieceHeight; i >= min
-			; i = i - pieceHeight)
-		{
-			// Óöµ½ÕÏ°­, ±íÊ¾Í¨µÀÒÑ¾­µ½¾¡Í·, Ö±½Ó·µ»Ø
-			if (hasPiece(p.x, i))
-			{
-				// Èç¹ûÓöµ½ÕÏ°­, Ö±½Ó·µ»Ø
-				return result;
-			}
-			result.add(new Point(p.x, i));
-		}
-		return result;
-	}
-	
-	/**
-	 * ¸øÒ»¸öPoint¶ÔÏó, ·µ»ØËüµÄÏÂÃæÍ¨µÀ
-	 * 
-	 * @param p
-	 * @param max ÏòÉÏ±éÀúÊ±µÄ×î´ó½çÏŞ
-	 * @return ¸ø¶¨PointÏÂÃæµÄÍ¨µÀ
-	 */
-	private List<Point> getDownChanel(Point p, int max, int pieceHeight)
-	{
-		List<Point> result = new ArrayList<Point>();
-		// »ñÈ¡ÏòÏÂÍ¨µÀ, ÓÉÒ»¸öµãÏòÓÒ±éÀú, ²½³¤ÎªPieceÍ¼Æ¬µÄ¸ß
-		for (int i = p.y + pieceHeight; i <= max
-			; i = i + pieceHeight)
-		{
-			// Óöµ½ÕÏ°­, ±íÊ¾Í¨µÀÒÑ¾­µ½¾¡Í·, Ö±½Ó·µ»Ø
-			if (hasPiece(p.x, i))
-			{
-				// Èç¹ûÓöµ½ÕÏ°­, Ö±½Ó·µ»Ø
-				return result;
-			}
-			result.add(new Point(p.x, i));
-		}
-		return result;
-	}
+    /**
+     * éå†ä¸¤ä¸ªé›†åˆ, å…ˆåˆ¤æ–­ç¬¬ä¸€ä¸ªé›†åˆçš„å…ƒç´ çš„yåº§æ ‡ä¸å¦ä¸€ä¸ªé›†åˆä¸­çš„å…ƒç´ yåº§æ ‡ç›¸åŒ(æ¨ªå‘),
+     * å¦‚æœç›¸åŒ, å³åœ¨åŒä¸€è¡Œ, å†åˆ¤æ–­æ˜¯å¦æœ‰éšœç¢, æ²¡æœ‰ åˆ™åŠ åˆ°ç»“æœçš„mapä¸­å»
+     *
+     * @param p1Chanel
+     * @param p2Chanel
+     * @param pieceWidth
+     * @return å­˜æ”¾å¯ä»¥æ¨ªå‘ç›´çº¿è¿æ¥çš„è¿æ¥ç‚¹çš„é”®å€¼å¯¹
+     */
+    private Map<Point, Point> getXLinkPoints(List<Point> p1Chanel,
+                                             List<Point> p2Chanel, int pieceWidth)
+    {
+        Map<Point, Point> result = new HashMap<Point, Point>();
+        for (int i = 0; i < p1Chanel.size(); i++)
+        {
+            // ä»ç¬¬ä¸€é€šé“ä¸­å–ä¸€ä¸ªç‚¹
+            Point temp1 = p1Chanel.get(i);
+            // å†éå†ç¬¬äºŒä¸ªé€šé“, çœ‹ä¸‹ç¬¬äºŒé€šé“ä¸­æ˜¯å¦æœ‰ç‚¹å¯ä»¥ä¸temp1æ¨ªå‘ç›¸è¿
+            for (int j = 0; j < p2Chanel.size(); j++)
+            {
+                Point temp2 = p2Chanel.get(j);
+                // å¦‚æœyåº§æ ‡ç›¸åŒ(åœ¨åŒä¸€è¡Œ), å†åˆ¤æ–­å®ƒä»¬ä¹‹é—´æ˜¯å¦æœ‰ç›´æ¥éšœç¢
+                if (temp1.y == temp2.y)
+                {
+                    if (!isXBlock(temp1, temp2, pieceWidth))
+                    {
+                        // æ²¡æœ‰éšœç¢åˆ™ç›´æ¥åŠ åˆ°ç»“æœçš„mapä¸­
+                        result.put(temp1, temp2);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * åˆ¤æ–­point2æ˜¯å¦åœ¨point1çš„å·¦ä¸Šè§’
+     *
+     * @param point1
+     * @param point2
+     * @return p2ä½äºp1çš„å·¦ä¸Šè§’æ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isLeftUp(Point point1, Point point2)
+    {
+        return (point2.x < point1.x && point2.y < point1.y);
+    }
+
+    /**
+     * åˆ¤æ–­point2æ˜¯å¦åœ¨point1çš„å·¦ä¸‹è§’
+     *
+     * @param point1
+     * @param point2
+     * @return p2ä½äºp1çš„å·¦ä¸‹è§’æ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isLeftDown(Point point1, Point point2)
+    {
+        return (point2.x < point1.x && point2.y > point1.y);
+    }
+
+    /**
+     * åˆ¤æ–­point2æ˜¯å¦åœ¨point1çš„å³ä¸Šè§’
+     *
+     * @param point1
+     * @param point2
+     * @return p2ä½äºp1çš„å³ä¸Šè§’æ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isRightUp(Point point1, Point point2)
+    {
+        return (point2.x > point1.x && point2.y < point1.y);
+    }
+
+    /**
+     * åˆ¤æ–­point2æ˜¯å¦åœ¨point1çš„å³ä¸‹è§’
+     *
+     * @param point1
+     * @param point2
+     * @return p2ä½äºp1çš„å³ä¸‹è§’æ—¶è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isRightDown(Point point1, Point point2)
+    {
+        return (point2.x > point1.x && point2.y > point1.y);
+    }
+
+    /**
+     * è·å–ä¸¤ä¸ªä¸åœ¨åŒä¸€è¡Œæˆ–è€…åŒä¸€åˆ—çš„åº§æ ‡ç‚¹çš„ç›´è§’è¿æ¥ç‚¹, å³åªæœ‰ä¸€ä¸ªè½¬æŠ˜ç‚¹
+     *
+     * @param point1 ç¬¬ä¸€ä¸ªç‚¹
+     * @param point2 ç¬¬äºŒä¸ªç‚¹
+     * @return ä¸¤ä¸ªä¸åœ¨åŒä¸€è¡Œæˆ–è€…åŒä¸€åˆ—çš„åº§æ ‡ç‚¹çš„ç›´è§’è¿æ¥ç‚¹
+     */
+    private Point getCornerPoint(Point point1, Point point2, int pieceWidth,
+                                 int pieceHeight)
+    {
+        // å…ˆåˆ¤æ–­è¿™ä¸¤ä¸ªç‚¹çš„ä½ç½®å…³ç³»
+        // point2åœ¨point1çš„å·¦ä¸Šè§’, point2åœ¨point1çš„å·¦ä¸‹è§’
+        if (isLeftUp(point1, point2) || isLeftDown(point1, point2))
+        {
+            // å‚æ•°æ¢ä½, é‡æ–°è°ƒç”¨æœ¬æ–¹æ³•
+            return getCornerPoint(point2, point1, pieceWidth, pieceHeight);
+        }
+        // è·å–p1å‘å³, å‘ä¸Š, å‘ä¸‹çš„ä¸‰ä¸ªé€šé“
+        List<Point> point1RightChanel = getRightChanel(point1, point2.x,
+                pieceWidth);
+        List<Point> point1UpChanel = getUpChanel(point1, point2.y, pieceHeight);
+        List<Point> point1DownChanel = getDownChanel(point1, point2.y,
+                pieceHeight);
+        // è·å–p2å‘ä¸‹, å‘å·¦, å‘ä¸‹çš„ä¸‰ä¸ªé€šé“
+        List<Point> point2DownChanel = getDownChanel(point2, point1.y,
+                pieceHeight);
+        List<Point> point2LeftChanel = getLeftChanel(point2, point1.x,
+                pieceWidth);
+        List<Point> point2UpChanel = getUpChanel(point2, point1.y, pieceHeight);
+        if (isRightUp(point1, point2))
+        {
+            // point2åœ¨point1çš„å³ä¸Šè§’
+            // è·å–p1å‘å³å’Œp2å‘ä¸‹çš„äº¤ç‚¹
+            Point linkPoint1 = getWrapPoint(point1RightChanel, point2DownChanel);
+            // è·å–p1å‘ä¸Šå’Œp2å‘å·¦çš„äº¤ç‚¹
+            Point linkPoint2 = getWrapPoint(point1UpChanel, point2LeftChanel);
+            // è¿”å›å…¶ä¸­ä¸€ä¸ªäº¤ç‚¹, å¦‚æœæ²¡æœ‰äº¤ç‚¹, åˆ™è¿”å›null
+            return (linkPoint1 == null) ? linkPoint2 : linkPoint1;
+        }
+        if (isRightDown(point1, point2))
+        {
+            // point2åœ¨point1çš„å³ä¸‹è§’
+            // è·å–p1å‘ä¸‹å’Œp2å‘å·¦çš„äº¤ç‚¹
+            Point linkPoint1 = getWrapPoint(point1DownChanel, point2LeftChanel);
+            // è·å–p1å‘å³å’Œp2å‘ä¸‹çš„äº¤ç‚¹
+            Point linkPoint2 = getWrapPoint(point1RightChanel, point2UpChanel);
+            return (linkPoint1 == null) ? linkPoint2 : linkPoint1;
+        }
+        return null;
+    }
+
+    /**
+     * éå†ä¸¤ä¸ªé€šé“, è·å–å®ƒä»¬çš„äº¤ç‚¹
+     *
+     * @param p1Chanel ç¬¬ä¸€ä¸ªç‚¹çš„é€šé“
+     * @param p2Chanel ç¬¬äºŒä¸ªç‚¹çš„é€šé“
+     * @return ä¸¤ä¸ªé€šé“æœ‰äº¤ç‚¹ï¼Œè¿”å›äº¤ç‚¹ï¼Œå¦åˆ™è¿”å›null
+     */
+    private Point getWrapPoint(List<Point> p1Chanel, List<Point> p2Chanel)
+    {
+        for (int i = 0; i < p1Chanel.size(); i++)
+        {
+            Point temp1 = p1Chanel.get(i);
+            for (int j = 0; j < p2Chanel.size(); j++)
+            {
+                Point temp2 = p2Chanel.get(j);
+                if (temp1.equals(temp2))
+                {
+                    // å¦‚æœä¸¤ä¸ªListä¸­æœ‰å…ƒç´ æœ‰åŒä¸€ä¸ª, è¡¨æ˜è¿™ä¸¤ä¸ªé€šé“æœ‰äº¤ç‚¹
+                    return temp1;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * åˆ¤æ–­ä¸¤ä¸ªyåº§æ ‡ç›¸åŒçš„ç‚¹å¯¹è±¡ä¹‹é—´æ˜¯å¦æœ‰éšœç¢, ä»¥p1ä¸ºä¸­å¿ƒå‘å³éå†
+     *
+     * @param p1
+     * @param p2
+     * @param pieceWidth
+     * @return ä¸¤ä¸ªPieceä¹‹é—´æœ‰éšœç¢è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isXBlock(Point p1, Point p2, int pieceWidth)
+    {
+        if (p2.x < p1.x)
+        {
+            // å¦‚æœp2åœ¨p1å·¦è¾¹, è°ƒæ¢å‚æ•°ä½ç½®è°ƒç”¨æœ¬æ–¹æ³•
+            return isXBlock(p2, p1, pieceWidth);
+        }
+        for (int i = p1.x + pieceWidth; i < p2.x; i = i + pieceWidth)
+        {
+            if (hasPiece(i, p1.y))
+            {// æœ‰éšœç¢
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * åˆ¤æ–­ä¸¤ä¸ªxåº§æ ‡ç›¸åŒçš„ç‚¹å¯¹è±¡ä¹‹é—´æ˜¯å¦æœ‰éšœç¢, ä»¥p1ä¸ºä¸­å¿ƒå‘ä¸‹éå†
+     *
+     * @param p1
+     * @param p2
+     * @param pieceHeight
+     * @return ä¸¤ä¸ªPieceä¹‹é—´æœ‰éšœç¢è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+     */
+    private boolean isYBlock(Point p1, Point p2, int pieceHeight)
+    {
+        if (p2.y < p1.y)
+        {
+            // å¦‚æœp2åœ¨p1çš„ä¸Šé¢, è°ƒæ¢å‚æ•°ä½ç½®é‡æ–°è°ƒç”¨æœ¬æ–¹æ³•
+            return isYBlock(p2, p1, pieceHeight);
+        }
+        for (int i = p1.y + pieceHeight; i < p2.y; i = i + pieceHeight)
+        {
+            if (hasPiece(p1.x, i))
+            {
+                // æœ‰éšœç¢
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * åˆ¤æ–­GamePanelä¸­çš„x, yåº§æ ‡ä¸­æ˜¯å¦æœ‰Pieceå¯¹è±¡
+     *
+     * @param x
+     * @param y
+     * @return true è¡¨ç¤ºæœ‰è¯¥åº§æ ‡æœ‰pieceå¯¹è±¡ false è¡¨ç¤ºæ²¡æœ‰
+     */
+    private boolean hasPiece(int x, int y)
+    {
+        if (findPiece(x, y) == null)
+            return false;
+        return true;
+    }
+
+    /**
+     * ç»™ä¸€ä¸ªPointå¯¹è±¡,è¿”å›å®ƒçš„å·¦è¾¹é€šé“
+     *
+     * @param p
+     * @param pieceWidth pieceå›¾ç‰‡çš„å®½
+     * @param min å‘å·¦éå†æ—¶æœ€å°çš„ç•Œé™
+     * @return ç»™å®šPointå·¦è¾¹çš„é€šé“
+     */
+    private List<Point> getLeftChanel(Point p, int min, int pieceWidth)
+    {
+        List<Point> result = new ArrayList<Point>();
+        // è·å–å‘å·¦é€šé“, ç”±ä¸€ä¸ªç‚¹å‘å·¦éå†, æ­¥é•¿ä¸ºPieceå›¾ç‰‡çš„å®½
+        for (int i = p.x - pieceWidth; i >= min
+                ; i = i - pieceWidth)
+        {
+            // é‡åˆ°éšœç¢, è¡¨ç¤ºé€šé“å·²ç»åˆ°å°½å¤´, ç›´æ¥è¿”å›
+            if (hasPiece(i, p.y))
+            {
+                return result;
+            }
+            result.add(new Point(i, p.y));
+        }
+        return result;
+    }
+
+    /**
+     * ç»™ä¸€ä¸ªPointå¯¹è±¡, è¿”å›å®ƒçš„å³è¾¹é€šé“
+     *
+     * @param p
+     * @param pieceWidth
+     * @param max å‘å³æ—¶çš„æœ€å³ç•Œé™
+     * @return ç»™å®šPointå³è¾¹çš„é€šé“
+     */
+    private List<Point> getRightChanel(Point p, int max, int pieceWidth)
+    {
+        List<Point> result = new ArrayList<Point>();
+        // è·å–å‘å³é€šé“, ç”±ä¸€ä¸ªç‚¹å‘å³éå†, æ­¥é•¿ä¸ºPieceå›¾ç‰‡çš„å®½
+        for (int i = p.x + pieceWidth; i <= max
+                ; i = i + pieceWidth)
+        {
+            // é‡åˆ°éšœç¢, è¡¨ç¤ºé€šé“å·²ç»åˆ°å°½å¤´, ç›´æ¥è¿”å›
+            if (hasPiece(i, p.y))
+            {
+                return result;
+            }
+            result.add(new Point(i, p.y));
+        }
+        return result;
+    }
+
+    /**
+     * ç»™ä¸€ä¸ªPointå¯¹è±¡, è¿”å›å®ƒçš„ä¸Šé¢é€šé“
+     *
+     * @param p
+     * @param min å‘ä¸Šéå†æ—¶æœ€å°çš„ç•Œé™
+     * @param pieceHeight
+     * @return ç»™å®šPointä¸Šé¢çš„é€šé“
+     */
+    private List<Point> getUpChanel(Point p, int min, int pieceHeight)
+    {
+        List<Point> result = new ArrayList<Point>();
+        // è·å–å‘ä¸Šé€šé“, ç”±ä¸€ä¸ªç‚¹å‘å³éå†, æ­¥é•¿ä¸ºPieceå›¾ç‰‡çš„é«˜
+        for (int i = p.y - pieceHeight; i >= min
+                ; i = i - pieceHeight)
+        {
+            // é‡åˆ°éšœç¢, è¡¨ç¤ºé€šé“å·²ç»åˆ°å°½å¤´, ç›´æ¥è¿”å›
+            if (hasPiece(p.x, i))
+            {
+                // å¦‚æœé‡åˆ°éšœç¢, ç›´æ¥è¿”å›
+                return result;
+            }
+            result.add(new Point(p.x, i));
+        }
+        return result;
+    }
+
+    /**
+     * ç»™ä¸€ä¸ªPointå¯¹è±¡, è¿”å›å®ƒçš„ä¸‹é¢é€šé“
+     *
+     * @param p
+     * @param max å‘ä¸Šéå†æ—¶çš„æœ€å¤§ç•Œé™
+     * @return ç»™å®šPointä¸‹é¢çš„é€šé“
+     */
+    private List<Point> getDownChanel(Point p, int max, int pieceHeight)
+    {
+        List<Point> result = new ArrayList<Point>();
+        // è·å–å‘ä¸‹é€šé“, ç”±ä¸€ä¸ªç‚¹å‘å³éå†, æ­¥é•¿ä¸ºPieceå›¾ç‰‡çš„é«˜
+        for (int i = p.y + pieceHeight; i <= max
+                ; i = i + pieceHeight)
+        {
+            // é‡åˆ°éšœç¢, è¡¨ç¤ºé€šé“å·²ç»åˆ°å°½å¤´, ç›´æ¥è¿”å›
+            if (hasPiece(p.x, i))
+            {
+                // å¦‚æœé‡åˆ°éšœç¢, ç›´æ¥è¿”å›
+                return result;
+            }
+            result.add(new Point(p.x, i));
+        }
+        return result;
+    }
 }

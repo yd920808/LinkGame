@@ -8,8 +8,8 @@ import org.crazyit.link.object.GameConf;
 import org.crazyit.link.view.Piece;
 
 /**
- * Description: ´´½¨ºáµÄÓÎÏ·ÇøÓò
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: åˆ›å»ºæ¨ªçš„æ¸¸æˆåŒºåŸŸ
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -19,27 +19,27 @@ import org.crazyit.link.view.Piece;
  */
 public class HorizontalBoard extends AbstractBoard
 {
-	protected List<Piece> createPieces(GameConf config,
-		Piece[][] pieces)
-	{
-		// ´´½¨Ò»¸öPiece¼¯ºÏ, ¸Ã¼¯ºÏÀïÃæ´æ·Å³õÊ¼»¯ÓÎÏ·Ê±ËùĞèµÄPiece¶ÔÏó
-		List<Piece> notNullPieces = new ArrayList<Piece>();
-		for (int i = 0; i < pieces.length; i++)
-		{
-			for (int j = 0; j < pieces[i].length; j++)
-			{
-				// ¼ÓÈëÅĞ¶Ï, ·ûºÏÒ»¶¨Ìõ¼ş²ÅÈ¥¹¹ÔìPiece¶ÔÏó, ²¢¼Óµ½¼¯ºÏÖĞ
-				if (j % 2 == 0)
-				{
-					// Èç¹ûxÄÜ±»2Õû³ı, ¼´µ¥ÊıĞĞ²»»á´´½¨·½¿é
-					// ÏÈ¹¹ÔìÒ»¸öPiece¶ÔÏó, Ö»ÉèÖÃËüÔÚPiece[][]Êı×éÖĞµÄË÷ÒıÖµ£¬
-					// ËùĞèÒªµÄPieceImageÓÉÆä¸¸Àà¸ºÔğÉèÖÃ¡£
-					Piece piece = new Piece(i, j);
-					// Ìí¼Óµ½Piece¼¯ºÏÖĞ
-					notNullPieces.add(piece);
-				}
-			}
-		}
-		return notNullPieces;
-	}
+    protected List<Piece> createPieces(GameConf config,
+                                       Piece[][] pieces)
+    {
+        // åˆ›å»ºä¸€ä¸ªPieceé›†åˆ, è¯¥é›†åˆé‡Œé¢å­˜æ”¾åˆå§‹åŒ–æ¸¸æˆæ—¶æ‰€éœ€çš„Pieceå¯¹è±¡
+        List<Piece> notNullPieces = new ArrayList<Piece>();
+        for (int i = 0; i < pieces.length; i++)
+        {
+            for (int j = 0; j < pieces[i].length; j++)
+            {
+                // åŠ å…¥åˆ¤æ–­, ç¬¦åˆä¸€å®šæ¡ä»¶æ‰å»æ„é€ Pieceå¯¹è±¡, å¹¶åŠ åˆ°é›†åˆä¸­
+                if (j % 2 == 0)
+                {
+                    // å¦‚æœxèƒ½è¢«2æ•´é™¤, å³å•æ•°è¡Œä¸ä¼šåˆ›å»ºæ–¹å—
+                    // å…ˆæ„é€ ä¸€ä¸ªPieceå¯¹è±¡, åªè®¾ç½®å®ƒåœ¨Piece[][]æ•°ç»„ä¸­çš„ç´¢å¼•å€¼ï¼Œ
+                    // æ‰€éœ€è¦çš„PieceImageç”±å…¶çˆ¶ç±»è´Ÿè´£è®¾ç½®ã€‚
+                    Piece piece = new Piece(i, j);
+                    // æ·»åŠ åˆ°Pieceé›†åˆä¸­
+                    notNullPieces.add(piece);
+                }
+            }
+        }
+        return notNullPieces;
+    }
 }

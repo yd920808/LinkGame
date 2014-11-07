@@ -3,8 +3,8 @@ package org.crazyit.link.object;
 import android.content.Context;
 
 /**
- * Description:±£´æÓÎÏ·ÅäÖÃµÄ¶ÔÏó
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description:ä¿å­˜æ¸¸æˆé…ç½®çš„å¯¹è±¡
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -14,71 +14,71 @@ import android.content.Context;
  */
 public class GameConf
 {
-	// ÉèÖÃÁ¬Á¬¿´µÄÃ¿¸ö·½¿éµÄÍ¼Æ¬µÄ¿í¡¢¸ß
-	public static final int PIECE_WIDTH = 40;
-	public static final int PIECE_HEIGHT = 40;
-	// ¼ÇÂ¼ÓÎÏ·µÄ×ÜÊÂ¼ş£¨100Ãë£©.
-	public static int DEFAULT_TIME = 100;	
-	// Piece[][]Êı×éµÚÒ»Î¬µÄ³¤¶È
-	private int xSize;
-	// Piece[][]Êı×éµÚ¶şÎ¬µÄ³¤¶È
-	private int ySize;
-	// BoardÖĞµÚÒ»ÕÅÍ¼Æ¬³öÏÖµÄx×ù±ê
-	private int beginImageX;
-	// BoardÖĞµÚÒ»ÕÅÍ¼Æ¬³öÏÖµÄy×ù±ê
-	private int beginImageY;
-	// ¼ÇÂ¼ÓÎÏ·µÄ×ÜÊ±¼ä, µ¥Î»ÊÇÃë
-	private long gameTime;
-	private Context context;
+    // è®¾ç½®è¿è¿çœ‹çš„æ¯ä¸ªæ–¹å—çš„å›¾ç‰‡çš„å®½ã€é«˜
+    public static final int PIECE_WIDTH = 40;
+    public static final int PIECE_HEIGHT = 40;
+    // è®°å½•æ¸¸æˆçš„æ€»äº‹ä»¶ï¼ˆ100ç§’ï¼‰.
+    public static int DEFAULT_TIME = 100;
+    // Piece[][]æ•°ç»„ç¬¬ä¸€ç»´çš„é•¿åº¦
+    private int xSize;
+    // Piece[][]æ•°ç»„ç¬¬äºŒç»´çš„é•¿åº¦
+    private int ySize;
+    // Boardä¸­ç¬¬ä¸€å¼ å›¾ç‰‡å‡ºç°çš„xåº§æ ‡
+    private int beginImageX;
+    // Boardä¸­ç¬¬ä¸€å¼ å›¾ç‰‡å‡ºç°çš„yåº§æ ‡
+    private int beginImageY;
+    // è®°å½•æ¸¸æˆçš„æ€»æ—¶é—´, å•ä½æ˜¯ç§’
+    private long gameTime;
+    private Context context;
 
-	/**
-	 * Ìá¹©Ò»¸ö²ÎÊı¹¹ÔìÆ÷
-	 * 
-	 * @param xSize Piece[][]Êı×éµÚÒ»Î¬³¤¶È
-	 * @param ySize Piece[][]Êı×éµÚ¶şÎ¬³¤¶È
-	 * @param beginImageX BoardÖĞµÚÒ»ÕÅÍ¼Æ¬³öÏÖµÄx×ù±ê
-	 * @param beginImageY BoardÖĞµÚÒ»ÕÅÍ¼Æ¬³öÏÖµÄy×ù±ê
-	 * @param gameTime ÉèÖÃÃ¿¾ÖµÄÊ±¼ä, µ¥Î»ÊÇÃë
-	 * @param context Ó¦ÓÃÉÏÏÂÎÄ
-	 */
-	public GameConf(int xSize, int ySize, int beginImageX,
-		int beginImageY, long gameTime, Context context)
-	{
-		this.xSize = xSize;
-		this.ySize = ySize;
-		this.beginImageX = beginImageX;
-		this.beginImageY = beginImageY;
-		this.gameTime = gameTime;
-		this.context = context;
-	}
+    /**
+     * æä¾›ä¸€ä¸ªå‚æ•°æ„é€ å™¨
+     *
+     * @param xSize Piece[][]æ•°ç»„ç¬¬ä¸€ç»´é•¿åº¦
+     * @param ySize Piece[][]æ•°ç»„ç¬¬äºŒç»´é•¿åº¦
+     * @param beginImageX Boardä¸­ç¬¬ä¸€å¼ å›¾ç‰‡å‡ºç°çš„xåº§æ ‡
+     * @param beginImageY Boardä¸­ç¬¬ä¸€å¼ å›¾ç‰‡å‡ºç°çš„yåº§æ ‡
+     * @param gameTime è®¾ç½®æ¯å±€çš„æ—¶é—´, å•ä½æ˜¯ç§’
+     * @param context åº”ç”¨ä¸Šä¸‹æ–‡
+     */
+    public GameConf(int xSize, int ySize, int beginImageX,
+                    int beginImageY, long gameTime, Context context)
+    {
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.beginImageX = beginImageX;
+        this.beginImageY = beginImageY;
+        this.gameTime = gameTime;
+        this.context = context;
+    }
 
-	public long getGameTime()
-	{
-		return gameTime;
-	}
+    public long getGameTime()
+    {
+        return gameTime;
+    }
 
-	public int getXSize()
-	{
-		return xSize;
-	}
+    public int getXSize()
+    {
+        return xSize;
+    }
 
-	public int getYSize()
-	{
-		return ySize;
-	}
+    public int getYSize()
+    {
+        return ySize;
+    }
 
-	public int getBeginImageX()
-	{
-		return beginImageX;
-	}
+    public int getBeginImageX()
+    {
+        return beginImageX;
+    }
 
-	public int getBeginImageY()
-	{
-		return beginImageY;
-	}
+    public int getBeginImageY()
+    {
+        return beginImageY;
+    }
 
-	public Context getContext()
-	{
-		return context;
-	}
+    public Context getContext()
+    {
+        return context;
+    }
 }

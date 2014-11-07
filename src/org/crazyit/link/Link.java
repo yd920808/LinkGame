@@ -35,267 +35,267 @@ import android.widget.TextView;
 
 public class Link extends Activity
 {
-	// ÓÎÏ·ÅäÖÃ¶ÔÏó
-	private GameConf config;
-	// ÓÎÏ·ÒµÎñÂß¼­½Ó¿Ú
-	private GameService gameService;
-	// ÓÎÏ·½çÃæ
-	private GameView gameView;
-	// ¿ªÊ¼°´Å¥
-	private Button startButton;
-	// ¼ÇÂ¼Ê£ÓàÊ±¼äµÄTextView
-	private TextView timeTextView;
-	// Ê§°Üºóµ¯³öµÄ¶Ô»°¿ò
-	private AlertDialog.Builder lostDialog;
-	// ÓÎÏ·Ê¤ÀûºóµÄ¶Ô»°¿ò
-	private AlertDialog.Builder successDialog;
-	// ¶¨Ê±Æ÷
-	private Timer timer = new Timer();
-	// ¼ÇÂ¼ÓÎÏ·µÄÊ£ÓàÊ±¼ä
-	private int gameTime;
-	// ¼ÇÂ¼ÊÇ·ñ´¦ÓÚÓÎÏ·×´Ì¬
-	private boolean isPlaying;
-	// Õñ¶¯´¦ÀíÀà
-	private Vibrator vibrator;
-	// ¼ÇÂ¼ÒÑ¾­Ñ¡ÖĞµÄ·½¿é
-	private Piece selected = null;
-	private Handler handler = new Handler()
-	{
-		public void handleMessage(Message msg)
-		{
-			switch (msg.what)
-			{
-				case 0x123:
-					timeTextView.setText("Ê£ÓàÊ±¼ä£º " + gameTime);
-					gameTime--;
-					// Ê±¼äĞ¡ÓÚ0, ÓÎÏ·Ê§°Ü
-					if (gameTime < 0)
-					{
-						stopTimer();
-						// ¸ü¸ÄÓÎÏ·µÄ×´Ì¬
-						isPlaying = false;
-						lostDialog.show();
-						return;
-					}
-					break;
-			}
-		}
-	};
+    // æ¸¸æˆé…ç½®å¯¹è±¡
+    private GameConf config;
+    // æ¸¸æˆä¸šåŠ¡é€»è¾‘æ¥å£
+    private GameService gameService;
+    // æ¸¸æˆç•Œé¢
+    private GameView gameView;
+    // å¼€å§‹æŒ‰é’®
+    private Button startButton;
+    // è®°å½•å‰©ä½™æ—¶é—´çš„TextView
+    private TextView timeTextView;
+    // å¤±è´¥åå¼¹å‡ºçš„å¯¹è¯æ¡†
+    private AlertDialog.Builder lostDialog;
+    // æ¸¸æˆèƒœåˆ©åçš„å¯¹è¯æ¡†
+    private AlertDialog.Builder successDialog;
+    // å®šæ—¶å™¨
+    private Timer timer = new Timer();
+    // è®°å½•æ¸¸æˆçš„å‰©ä½™æ—¶é—´
+    private int gameTime;
+    // è®°å½•æ˜¯å¦å¤„äºæ¸¸æˆçŠ¶æ€
+    private boolean isPlaying;
+    // æŒ¯åŠ¨å¤„ç†ç±»
+    private Vibrator vibrator;
+    // è®°å½•å·²ç»é€‰ä¸­çš„æ–¹å—
+    private Piece selected = null;
+    private Handler handler = new Handler()
+    {
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case 0x123:
+                    timeTextView.setText("å‰©ä½™æ—¶é—´ï¼š " + gameTime);
+                    gameTime--;
+                    // æ—¶é—´å°äº0, æ¸¸æˆå¤±è´¥
+                    if (gameTime < 0)
+                    {
+                        stopTimer();
+                        // æ›´æ”¹æ¸¸æˆçš„çŠ¶æ€
+                        isPlaying = false;
+                        lostDialog.show();
+                        return;
+                    }
+                    break;
+            }
+        }
+    };
 
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		// ³õÊ¼»¯½çÃæ
-		init();
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        // åˆå§‹åŒ–ç•Œé¢
+        init();
+    }
 
-	// ³õÊ¼»¯ÓÎÏ·µÄ·½·¨
-	private void init()
-	{
-		config = new GameConf(8, 9, 2, 10 , 100000, this);
-		// µÃµ½ÓÎÏ·ÇøÓò¶ÔÏó
-		gameView = (GameView) findViewById(R.id.gameView);
-		// »ñÈ¡ÏÔÊ¾Ê£ÓàÊ±¼äµÄÎÄ±¾¿ò
-		timeTextView = (TextView) findViewById(R.id.timeText);
-		// »ñÈ¡¿ªÊ¼°´Å¥
-		startButton = (Button) this.findViewById(R.id.startButton);
-		// »ñÈ¡Õñ¶¯Æ÷
-		vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-		gameService = new GameServiceImpl(this.config);
-		gameView.setGameService(gameService);
-		// Îª¿ªÊ¼°´Å¥µÄµ¥»÷ÊÂ¼ş°ó¶¨ÊÂ¼ş¼àÌıÆ÷
-		startButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View source)
-			{
-				startGame(GameConf.DEFAULT_TIME);
-			}
-		});
-		// ÎªÓÎÏ·ÇøÓòµÄ´¥ÅöÊÂ¼ş°ó¶¨¼àÌıÆ÷
-		this.gameView.setOnTouchListener(new View.OnTouchListener()
-		{
-			public boolean onTouch(View view, MotionEvent e)
-			{
-				if (e.getAction() == MotionEvent.ACTION_DOWN)
-				{
-					gameViewTouchDown(e);
-				}
-				if (e.getAction() == MotionEvent.ACTION_UP)
-				{
-					gameViewTouchUp(e);
-				}
-				return true;
-			}
-		});
-		// ³õÊ¼»¯ÓÎÏ·Ê§°ÜµÄ¶Ô»°¿ò
-		lostDialog = createDialog("Lost", "ÓÎÏ·Ê§°Ü£¡ ÖØĞÂ¿ªÊ¼", R.drawable.lost)
-			.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener()
-			{
-				public void onClick(DialogInterface dialog, int which)
-				{
-					startGame(GameConf.DEFAULT_TIME);
-				}
-			});
-		// ³õÊ¼»¯ÓÎÏ·Ê¤ÀûµÄ¶Ô»°¿ò
-		successDialog = createDialog("Success", "ÓÎÏ·Ê¤Àû£¡ ÖØĞÂ¿ªÊ¼",
-			R.drawable.success).setPositiveButton("È·¶¨",
-			new DialogInterface.OnClickListener()
-			{
-				public void onClick(DialogInterface dialog, int which)
-				{
-					startGame(GameConf.DEFAULT_TIME);
-				}
-			});
-	}
-	@Override
-	protected void onPause()
-	{
-		// ÔİÍ£ÓÎÏ·
-		stopTimer();
-		super.onPause();
-	}
-	@Override
-	protected void onResume()
-	{
-		// Èç¹û´¦ÓÚÓÎÏ·×´Ì¬ÖĞ
-		if (isPlaying)
-		{
-			// ÒÔÊ£ÓàÊ±¼äÖØĞ´¿ªÊ¼ÓÎÏ·
-			startGame(gameTime);
-		}
-		super.onResume();
-	}
+    // åˆå§‹åŒ–æ¸¸æˆçš„æ–¹æ³•
+    private void init()
+    {
+        config = new GameConf(8, 9, 2, 10 , 100000, this);
+        // å¾—åˆ°æ¸¸æˆåŒºåŸŸå¯¹è±¡
+        gameView = (GameView) findViewById(R.id.gameView);
+        // è·å–æ˜¾ç¤ºå‰©ä½™æ—¶é—´çš„æ–‡æœ¬æ¡†
+        timeTextView = (TextView) findViewById(R.id.timeText);
+        // è·å–å¼€å§‹æŒ‰é’®
+        startButton = (Button) this.findViewById(R.id.startButton);
+        // è·å–æŒ¯åŠ¨å™¨
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        gameService = new GameServiceImpl(this.config);
+        gameView.setGameService(gameService);
+        // ä¸ºå¼€å§‹æŒ‰é’®çš„å•å‡»äº‹ä»¶ç»‘å®šäº‹ä»¶ç›‘å¬å™¨
+        startButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View source)
+            {
+                startGame(GameConf.DEFAULT_TIME);
+            }
+        });
+        // ä¸ºæ¸¸æˆåŒºåŸŸçš„è§¦ç¢°äº‹ä»¶ç»‘å®šç›‘å¬å™¨
+        this.gameView.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View view, MotionEvent e)
+            {
+                if (e.getAction() == MotionEvent.ACTION_DOWN)
+                {
+                    gameViewTouchDown(e);
+                }
+                if (e.getAction() == MotionEvent.ACTION_UP)
+                {
+                    gameViewTouchUp(e);
+                }
+                return true;
+            }
+        });
+        // åˆå§‹åŒ–æ¸¸æˆå¤±è´¥çš„å¯¹è¯æ¡†
+        lostDialog = createDialog("Lost", "æ¸¸æˆå¤±è´¥ï¼ é‡æ–°å¼€å§‹", R.drawable.lost)
+                .setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        startGame(GameConf.DEFAULT_TIME);
+                    }
+                });
+        // åˆå§‹åŒ–æ¸¸æˆèƒœåˆ©çš„å¯¹è¯æ¡†
+        successDialog = createDialog("Success", "æ¸¸æˆèƒœåˆ©ï¼ é‡æ–°å¼€å§‹",
+                R.drawable.success).setPositiveButton("ç¡®å®š",
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        startGame(GameConf.DEFAULT_TIME);
+                    }
+                });
+    }
+    @Override
+    protected void onPause()
+    {
+        // æš‚åœæ¸¸æˆ
+        stopTimer();
+        super.onPause();
+    }
+    @Override
+    protected void onResume()
+    {
+        // å¦‚æœå¤„äºæ¸¸æˆçŠ¶æ€ä¸­
+        if (isPlaying)
+        {
+            // ä»¥å‰©ä½™æ—¶é—´é‡å†™å¼€å§‹æ¸¸æˆ
+            startGame(gameTime);
+        }
+        super.onResume();
+    }
 
-	// ´¥ÅöÓÎÏ·ÇøÓòµÄ´¦Àí·½·¨
-	private void gameViewTouchDown(MotionEvent event)
-	{
-		// »ñÈ¡GameServiceImplÖĞµÄPiece[][]Êı×é
-		Piece[][] pieces = gameService.getPieces();
-		// »ñÈ¡ÓÃ»§µã»÷µÄx×ù±ê
-		float touchX = event.getX();
-		// »ñÈ¡ÓÃ»§µã»÷µÄy×ù±ê
-		float touchY = event.getY();
-		// ¸ù¾İÓÃ»§´¥ÅöµÄ×ù±êµÃµ½¶ÔÓ¦µÄPiece¶ÔÏó
-		Piece currentPiece = gameService.findPiece(touchX, touchY);
-		// Èç¹ûÃ»ÓĞÑ¡ÖĞÈÎºÎPiece¶ÔÏó(¼´Êó±êµã»÷µÄµØ·½Ã»ÓĞÍ¼Æ¬), ²»ÔÙÍùÏÂÖ´ĞĞ
-		if (currentPiece == null)
-			return;
-		// ½«gameViewÖĞµÄÑ¡ÖĞ·½¿éÉèÎªµ±Ç°·½¿é
-		this.gameView.setSelectedPiece(currentPiece);
-		// ±íÊ¾Ö®Ç°Ã»ÓĞÑ¡ÖĞÈÎºÎÒ»¸öPiece
-		if (this.selected == null)
-		{
-			// ½«µ±Ç°·½¿éÉèÎªÒÑÑ¡ÖĞµÄ·½¿é, ÖØĞÂ½«GamePanel»æÖÆ, ²¢²»ÔÙÍùÏÂÖ´ĞĞ
-			this.selected = currentPiece;
-			this.gameView.postInvalidate();
-			return;
-		}
-		// ±íÊ¾Ö®Ç°ÒÑ¾­Ñ¡ÔñÁËÒ»¸ö
-		if (this.selected != null)
-		{
-			// ÔÚÕâÀï¾ÍÒª¶ÔcurrentPieceºÍprePiece½øĞĞÅĞ¶Ï²¢½øĞĞÁ¬½Ó
-			LinkInfo linkInfo = this.gameService.link(this.selected,
-				currentPiece);
-			// Á½¸öPiece²»¿ÉÁ¬, linkInfoÎªnull
-			if (linkInfo == null)
-			{
-				// Èç¹ûÁ¬½Ó²»³É¹¦, ½«µ±Ç°·½¿éÉèÎªÑ¡ÖĞ·½¿é
-				this.selected = currentPiece;
-				this.gameView.postInvalidate();
-			}
-			else
-			{
-				// ´¦Àí³É¹¦Á¬½Ó
-				handleSuccessLink(linkInfo, this.selected
-					, currentPiece, pieces);
-			}
-		}
-	}
-	// ´¥ÅöÓÎÏ·ÇøÓòµÄ´¦Àí·½·¨
-	private void gameViewTouchUp(MotionEvent e)
-	{
-		this.gameView.postInvalidate();
-	}
-	
-	// ÒÔgameTime×÷ÎªÊ£ÓàÊ±¼ä¿ªÊ¼»ò»Ö¸´ÓÎÏ·
-	private void startGame(int gameTime)
-	{
-		// Èç¹ûÖ®Ç°µÄtimer»¹Î´È¡Ïû£¬È¡Ïûtimer
-		if (this.timer != null)
-		{
-			stopTimer();
-		}
-		// ÖØĞÂÉèÖÃÓÎÏ·Ê±¼ä
-		this.gameTime = gameTime;		
-		// Èç¹ûÓÎÏ·Ê£ÓàÊ±¼äÓë×ÜÓÎÏ·Ê±¼äÏàµÈ£¬¼´ÎªÖØĞÂ¿ªÊ¼ĞÂÓÎÏ·
-		if(gameTime == GameConf.DEFAULT_TIME)
-		{
-			// ¿ªÊ¼ĞÂµÄÓÎÏ·ÓÎÏ·
-			gameView.startGame();
-		}
-		isPlaying = true;	
-		this.timer = new Timer();
-		// Æô¶¯¼ÆÊ±Æ÷ £¬ Ã¿¸ô1Ãë·¢ËÍÒ»´ÎÏûÏ¢
-		this.timer.schedule(new TimerTask()
-		{
-			public void run()
-			{
-				handler.sendEmptyMessage(0x123);
-			}
-		}, 0, 1000);
-		// ½«Ñ¡ÖĞ·½¿éÉèÎªnull¡£
-		this.selected = null;
-	}	
+    // è§¦ç¢°æ¸¸æˆåŒºåŸŸçš„å¤„ç†æ–¹æ³•
+    private void gameViewTouchDown(MotionEvent event)
+    {
+        // è·å–GameServiceImplä¸­çš„Piece[][]æ•°ç»„
+        Piece[][] pieces = gameService.getPieces();
+        // è·å–ç”¨æˆ·ç‚¹å‡»çš„xåº§æ ‡
+        float touchX = event.getX();
+        // è·å–ç”¨æˆ·ç‚¹å‡»çš„yåº§æ ‡
+        float touchY = event.getY();
+        // æ ¹æ®ç”¨æˆ·è§¦ç¢°çš„åº§æ ‡å¾—åˆ°å¯¹åº”çš„Pieceå¯¹è±¡
+        Piece currentPiece = gameService.findPiece(touchX, touchY);
+        // å¦‚æœæ²¡æœ‰é€‰ä¸­ä»»ä½•Pieceå¯¹è±¡(å³é¼ æ ‡ç‚¹å‡»çš„åœ°æ–¹æ²¡æœ‰å›¾ç‰‡), ä¸å†å¾€ä¸‹æ‰§è¡Œ
+        if (currentPiece == null)
+            return;
+        // å°†gameViewä¸­çš„é€‰ä¸­æ–¹å—è®¾ä¸ºå½“å‰æ–¹å—
+        this.gameView.setSelectedPiece(currentPiece);
+        // è¡¨ç¤ºä¹‹å‰æ²¡æœ‰é€‰ä¸­ä»»ä½•ä¸€ä¸ªPiece
+        if (this.selected == null)
+        {
+            // å°†å½“å‰æ–¹å—è®¾ä¸ºå·²é€‰ä¸­çš„æ–¹å—, é‡æ–°å°†GamePanelç»˜åˆ¶, å¹¶ä¸å†å¾€ä¸‹æ‰§è¡Œ
+            this.selected = currentPiece;
+            this.gameView.postInvalidate();
+            return;
+        }
+        // è¡¨ç¤ºä¹‹å‰å·²ç»é€‰æ‹©äº†ä¸€ä¸ª
+        if (this.selected != null)
+        {
+            // åœ¨è¿™é‡Œå°±è¦å¯¹currentPieceå’ŒprePieceè¿›è¡Œåˆ¤æ–­å¹¶è¿›è¡Œè¿æ¥
+            LinkInfo linkInfo = this.gameService.link(this.selected,
+                    currentPiece);
+            // ä¸¤ä¸ªPieceä¸å¯è¿, linkInfoä¸ºnull
+            if (linkInfo == null)
+            {
+                // å¦‚æœè¿æ¥ä¸æˆåŠŸ, å°†å½“å‰æ–¹å—è®¾ä¸ºé€‰ä¸­æ–¹å—
+                this.selected = currentPiece;
+                this.gameView.postInvalidate();
+            }
+            else
+            {
+                // å¤„ç†æˆåŠŸè¿æ¥
+                handleSuccessLink(linkInfo, this.selected
+                        , currentPiece, pieces);
+            }
+        }
+    }
+    // è§¦ç¢°æ¸¸æˆåŒºåŸŸçš„å¤„ç†æ–¹æ³•
+    private void gameViewTouchUp(MotionEvent e)
+    {
+        this.gameView.postInvalidate();
+    }
 
-	/**
-	 * ³É¹¦Á¬½Óºó´¦Àí
-	 * 
-	 * @param linkInfo Á¬½ÓĞÅÏ¢
-	 * @param prePiece Ç°Ò»¸öÑ¡ÖĞ·½¿é
-	 * @param currentPiece µ±Ç°Ñ¡Ôñ·½¿é
-	 * @param pieces ÏµÍ³ÖĞ»¹Ê£µÄÈ«²¿·½¿é
-	 */
-	private void handleSuccessLink(LinkInfo linkInfo, Piece prePiece,
-		Piece currentPiece, Piece[][] pieces)
-	{
-		// ËüÃÇ¿ÉÒÔÏàÁ¬, ÈÃGamePanel´¦ÀíLinkInfo
-		this.gameView.setLinkInfo(linkInfo);
-		// ½«gameViewÖĞµÄÑ¡ÖĞ·½¿éÉèÎªnull
-		this.gameView.setSelectedPiece(null);
-		this.gameView.postInvalidate();
-		// ½«Á½¸öPiece¶ÔÏó´ÓÊı×éÖĞÉ¾³ı
-		pieces[prePiece.getIndexX()][prePiece.getIndexY()] = null;
-		pieces[currentPiece.getIndexX()][currentPiece.getIndexY()] = null;
-		// ½«Ñ¡ÖĞµÄ·½¿éÉèÖÃnull¡£
-		this.selected = null;
-		// ÊÖ»úÕñ¶¯(100ºÁÃë)
-		this.vibrator.vibrate(100);
-		// ÅĞ¶ÏÊÇ·ñ»¹ÓĞÊ£ÏÂµÄ·½¿é, Èç¹ûÃ»ÓĞ, ÓÎÏ·Ê¤Àû
-		if (!this.gameService.hasPieces())
-		{
-			// ÓÎÏ·Ê¤Àû
-			this.successDialog.show();
-			// Í£Ö¹¶¨Ê±Æ÷
-			stopTimer();
-			// ¸ü¸ÄÓÎÏ·×´Ì¬
-			isPlaying = false;
-		}
-	}
+    // ä»¥gameTimeä½œä¸ºå‰©ä½™æ—¶é—´å¼€å§‹æˆ–æ¢å¤æ¸¸æˆ
+    private void startGame(int gameTime)
+    {
+        // å¦‚æœä¹‹å‰çš„timerè¿˜æœªå–æ¶ˆï¼Œå–æ¶ˆtimer
+        if (this.timer != null)
+        {
+            stopTimer();
+        }
+        // é‡æ–°è®¾ç½®æ¸¸æˆæ—¶é—´
+        this.gameTime = gameTime;
+        // å¦‚æœæ¸¸æˆå‰©ä½™æ—¶é—´ä¸æ€»æ¸¸æˆæ—¶é—´ç›¸ç­‰ï¼Œå³ä¸ºé‡æ–°å¼€å§‹æ–°æ¸¸æˆ
+        if(gameTime == GameConf.DEFAULT_TIME)
+        {
+            // å¼€å§‹æ–°çš„æ¸¸æˆæ¸¸æˆ
+            gameView.startGame();
+        }
+        isPlaying = true;
+        this.timer = new Timer();
+        // å¯åŠ¨è®¡æ—¶å™¨ ï¼Œ æ¯éš”1ç§’å‘é€ä¸€æ¬¡æ¶ˆæ¯
+        this.timer.schedule(new TimerTask()
+        {
+            public void run()
+            {
+                handler.sendEmptyMessage(0x123);
+            }
+        }, 0, 1000);
+        // å°†é€‰ä¸­æ–¹å—è®¾ä¸ºnullã€‚
+        this.selected = null;
+    }
 
-	// ´´½¨¶Ô»°¿òµÄ¹¤¾ß·½·¨
-	private AlertDialog.Builder createDialog(String title, String message,
-		int imageResource)
-	{
-		return new AlertDialog.Builder(this).setTitle(title)
-			.setMessage(message).setIcon(imageResource);
-	}
-	private void stopTimer()
-	{
-		// Í£Ö¹¶¨Ê±Æ÷
-		this.timer.cancel();
-		this.timer = null;
-	}
+    /**
+     * æˆåŠŸè¿æ¥åå¤„ç†
+     *
+     * @param linkInfo è¿æ¥ä¿¡æ¯
+     * @param prePiece å‰ä¸€ä¸ªé€‰ä¸­æ–¹å—
+     * @param currentPiece å½“å‰é€‰æ‹©æ–¹å—
+     * @param pieces ç³»ç»Ÿä¸­è¿˜å‰©çš„å…¨éƒ¨æ–¹å—
+     */
+    private void handleSuccessLink(LinkInfo linkInfo, Piece prePiece,
+                                   Piece currentPiece, Piece[][] pieces)
+    {
+        // å®ƒä»¬å¯ä»¥ç›¸è¿, è®©GamePanelå¤„ç†LinkInfo
+        this.gameView.setLinkInfo(linkInfo);
+        // å°†gameViewä¸­çš„é€‰ä¸­æ–¹å—è®¾ä¸ºnull
+        this.gameView.setSelectedPiece(null);
+        this.gameView.postInvalidate();
+        // å°†ä¸¤ä¸ªPieceå¯¹è±¡ä»æ•°ç»„ä¸­åˆ é™¤
+        pieces[prePiece.getIndexX()][prePiece.getIndexY()] = null;
+        pieces[currentPiece.getIndexX()][currentPiece.getIndexY()] = null;
+        // å°†é€‰ä¸­çš„æ–¹å—è®¾ç½®nullã€‚
+        this.selected = null;
+        // æ‰‹æœºæŒ¯åŠ¨(100æ¯«ç§’)
+        this.vibrator.vibrate(100);
+        // åˆ¤æ–­æ˜¯å¦è¿˜æœ‰å‰©ä¸‹çš„æ–¹å—, å¦‚æœæ²¡æœ‰, æ¸¸æˆèƒœåˆ©
+        if (!this.gameService.hasPieces())
+        {
+            // æ¸¸æˆèƒœåˆ©
+            this.successDialog.show();
+            // åœæ­¢å®šæ—¶å™¨
+            stopTimer();
+            // æ›´æ”¹æ¸¸æˆçŠ¶æ€
+            isPlaying = false;
+        }
+
+
+    // åˆ›å»ºå¯¹è¯æ¡†çš„å·¥å…·æ–¹æ³•
+    private AlertDialog.Builder createDialog(String title, String message,
+                                             int imageResource)
+    {
+        return new AlertDialog.Builder(this).setTitle(title)
+                .setMessage(message).setIcon(imageResource);
+    }
+    private void stopTimer()
+    {
+        // åœæ­¢å®šæ—¶å™¨
+        this.timer.cancel();
+        this.timer = null;
+    }
 }

@@ -1,13 +1,13 @@
 /**
- * 
+ *
  */
 package org.crazyit.link.view;
 
 import android.graphics.Bitmap;
 
 /**
- * Description: ·â×°Í¼Æ¬IDÓëÍ¼Æ¬±¾ÉíµÄ¹¤¾ßÀà
- * <br/>ÍøÕ¾: <a href="http://www.crazyit.org">·è¿ñJavaÁªÃË</a> 
+ * Description: å°è£…å›¾ç‰‡IDä¸å›¾ç‰‡æœ¬èº«çš„å·¥å…·ç±»
+ * <br/>ç½‘ç«™: <a href="http://www.crazyit.org">ç–¯ç‹‚Javaè”ç›Ÿ</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -17,29 +17,29 @@ import android.graphics.Bitmap;
  */
 public class PieceImage
 {
-	private Bitmap image;
-	private int imageId;
-	// ÓĞ²ÎÊıµÄ¹¹ÔìÆ÷
-	public PieceImage(Bitmap image, int imageId)
-	{
-		super();
-		this.image = image;
-		this.imageId = imageId;
-	}
-	public Bitmap getImage()
-	{
-		return image;
-	}
-	public void setImage(Bitmap image)
-	{
-		this.image = image;
-	}
-	public int getImageId()
-	{
-		return imageId;
-	}
-	public void setImageId(int imageId)
-	{
-		this.imageId = imageId;
-	}
+    private Bitmap image;
+    private int imageId;
+    // æœ‰å‚æ•°çš„æ„é€ å™¨
+    public PieceImage(Bitmap image, int imageId)
+    {
+        super();
+        this.image = image;
+        this.imageId = imageId;
+    }
+    public Bitmap getImage()
+    {
+        return image;
+    }
+    public void setImage(Bitmap image)
+    {
+        this.image = image;
+    }
+    public int getImageId()
+    {
+        return imageId;
+    }
+    public void setImageId(int imageId)
+    {
+        this.imageId = imageId;
+    }
 }

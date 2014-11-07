@@ -8,8 +8,8 @@ import org.crazyit.link.view.Piece;
 import org.crazyit.link.view.PieceImage;
 
 /**
- * Description: ÓÎÏ·ÇøÓòµÄ³éÏóÀà
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: æ¸¸æˆåŒºåŸŸçš„æŠ½è±¡ç±»
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -20,36 +20,36 @@ import org.crazyit.link.view.PieceImage;
 
 public abstract class AbstractBoard
 {
-	// ¶¨ÒåÒ»¸ö³éÏó·½·¨, ÈÃ×ÓÀàÈ¥ÊµÏÖ
-	protected abstract List<Piece> createPieces(GameConf config,
-		Piece[][] pieces);
+    // å®šä¹‰ä¸€ä¸ªæŠ½è±¡æ–¹æ³•, è®©å­ç±»å»å®ç°
+    protected abstract List<Piece> createPieces(GameConf config,
+                                                Piece[][] pieces);
 
-	public Piece[][] create(GameConf config)
-	{
-		// ´´½¨Piece[][]Êı×é
-		Piece[][] pieces = new Piece[config.getXSize()][config.getYSize()];
-		// ·µ»Ø·Ç¿ÕµÄPiece¼¯ºÏ, ¸Ã¼¯ºÏÓÉ×ÓÀàÈ¥´´½¨
-		List<Piece> notNullPieces = createPieces(config, pieces);
-		// ¸ù¾İ·Ç¿ÕPiece¶ÔÏóµÄ¼¯ºÏµÄ´óĞ¡À´È¡Í¼Æ¬
-		List<PieceImage> playImages = ImageUtil.getPlayImages(config.getContext(),
-			notNullPieces.size());
-		// ËùÓĞÍ¼Æ¬µÄ¿í¡¢¸ß¶¼ÊÇÏàÍ¬µÄ
-		int imageWidth = playImages.get(0).getImage().getWidth();
-		int imageHeight = playImages.get(0).getImage().getHeight();
-		// ±éÀú·Ç¿ÕµÄPiece¼¯ºÏ
-		for (int i = 0; i < notNullPieces.size(); i++)
-		{
-			// ÒÀ´Î»ñÈ¡Ã¿¸öPiece¶ÔÏó
-			Piece piece = notNullPieces.get(i);
-			piece.setImage(playImages.get(i));
-			// ¼ÆËãÃ¿¸ö·½¿é×óÉÏ½ÇµÄX¡¢Y×ù±ê
-			piece.setBeginX(piece.getIndexX() * imageWidth
-				+ config.getBeginImageX());
-			piece.setBeginY(piece.getIndexY() * imageHeight
-				+ config.getBeginImageY());
-			// ½«¸Ã·½¿é¶ÔÏó·ÅÈë·½¿éÊı×éµÄÏàÓ¦Î»ÖÃ´¦
-			pieces[piece.getIndexX()][piece.getIndexY()] = piece;
-		}
-		return pieces;
-	}
+    public Piece[][] create(GameConf config)
+    {
+        // åˆ›å»ºPiece[][]æ•°ç»„
+        Piece[][] pieces = new Piece[config.getXSize()][config.getYSize()];
+        // è¿”å›éç©ºçš„Pieceé›†åˆ, è¯¥é›†åˆç”±å­ç±»å»åˆ›å»º
+        List<Piece> notNullPieces = createPieces(config, pieces);
+        // æ ¹æ®éç©ºPieceå¯¹è±¡çš„é›†åˆçš„å¤§å°æ¥å–å›¾ç‰‡
+        List<PieceImage> playImages = ImageUtil.getPlayImages(config.getContext(),
+                notNullPieces.size());
+        // æ‰€æœ‰å›¾ç‰‡çš„å®½ã€é«˜éƒ½æ˜¯ç›¸åŒçš„
+        int imageWidth = playImages.get(0).getImage().getWidth();
+        int imageHeight = playImages.get(0).getImage().getHeight();
+        // éå†éç©ºçš„Pieceé›†åˆ
+        for (int i = 0; i < notNullPieces.size(); i++)
+        {
+            // ä¾æ¬¡è·å–æ¯ä¸ªPieceå¯¹è±¡
+            Piece piece = notNullPieces.get(i);
+            piece.setImage(playImages.get(i));
+            // è®¡ç®—æ¯ä¸ªæ–¹å—å·¦ä¸Šè§’çš„Xã€Yåº§æ ‡
+            piece.setBeginX(piece.getIndexX() * imageWidth
+                    + config.getBeginImageX());
+            piece.setBeginY(piece.getIndexY() * imageHeight
+                    + config.getBeginImageY());
+            // å°†è¯¥æ–¹å—å¯¹è±¡æ”¾å…¥æ–¹å—æ•°ç»„çš„ç›¸åº”ä½ç½®å¤„
+            pieces[piece.getIndexX()][piece.getIndexY()] = piece;
+        }
+        return pieces;
+    }
 }

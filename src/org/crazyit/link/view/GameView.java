@@ -27,106 +27,106 @@ import android.view.View;
  */
 public class GameView extends View
 {
-	// ÓÎÏ·Âß¼­µÄÊµÏÖÀà
-	private GameService gameService;
-	// ±£´æµ±Ç°ÒÑ¾­±»Ñ¡ÖĞµÄ·½¿é
-	private Piece selectedPiece;
-	// Á¬½ÓĞÅÏ¢¶ÔÏó
-	private LinkInfo linkInfo;
-	private Paint paint;
-	// Ñ¡ÖĞ±êÊ¶µÄÍ¼Æ¬¶ÔÏó
-	private Bitmap selectImage;
+    // æ¸¸æˆé€»è¾‘çš„å®ç°ç±»
+    private GameService gameService;
+    // ä¿å­˜å½“å‰å·²ç»è¢«é€‰ä¸­çš„æ–¹å—
+    private Piece selectedPiece;
+    // è¿æ¥ä¿¡æ¯å¯¹è±¡
+    private LinkInfo linkInfo;
+    private Paint paint;
+    // é€‰ä¸­æ ‡è¯†çš„å›¾ç‰‡å¯¹è±¡
+    private Bitmap selectImage;
 
-	public GameView(Context context, AttributeSet attrs)
-	{
-		super(context, attrs);
-		this.paint = new Paint();
-		// ÉèÖÃÁ¬½ÓÏßµÄÑÕÉ«
-		this.paint.setColor(Color.RED);
-		// ÉèÖÃÁ¬½ÓÏßµÄ´ÖÏ¸
-		this.paint.setStrokeWidth(3);
-		this.selectImage = ImageUtil.getSelectImage(context);
-	}
+    public GameView(Context context, AttributeSet attrs)
+    {
+        super(context, attrs);
+        this.paint = new Paint();
+        // è®¾ç½®è¿æ¥çº¿çš„é¢œè‰²
+        this.paint.setColor(Color.RED);
+        // è®¾ç½®è¿æ¥çº¿çš„ç²—ç»†
+        this.paint.setStrokeWidth(3);
+        this.selectImage = ImageUtil.getSelectImage(context);
+    }
 
-	public void setLinkInfo(LinkInfo linkInfo)
-	{
-		this.linkInfo = linkInfo;
-	}
+    public void setLinkInfo(LinkInfo linkInfo)
+    {
+        this.linkInfo = linkInfo;
+    }
 
-	public void setGameService(GameService gameService)
-	{
-		this.gameService = gameService;
-	}
+    public void setGameService(GameService gameService)
+    {
+        this.gameService = gameService;
+    }
 
-	@Override
-	protected void onDraw(Canvas canvas)
-	{
-		super.onDraw(canvas);
-		if (this.gameService == null)
-			return;
-		Piece[][] pieces = gameService.getPieces();
-		if (pieces != null)
-		{
-			// ±éÀúpieces¶şÎ¬Êı×é
-			for (int i = 0; i < pieces.length; i++)
-			{
-				for (int j = 0; j < pieces[i].length; j++)
-				{
-					// Èç¹û¶şÎ¬Êı×éÖĞ¸ÃÔªËØ²»Îª¿Õ£¨¼´ÓĞ·½¿é£©£¬½«Õâ¸ö·½¿éµÄÍ¼Æ¬»­³öÀ´
-					if (pieces[i][j] != null)
-					{
-						// µÃµ½Õâ¸öPiece¶ÔÏó
-						Piece piece = pieces[i][j];
-						// ¸ù¾İ·½¿é×óÉÏ½ÇX¡¢Y×ù±ê»æÖÆ·½¿é
-						canvas.drawBitmap(piece.getImage().getImage(),
-							piece.getBeginX(), piece.getBeginY(), null);
-					}
-				}
-			}
-		}
-		// Èç¹ûµ±Ç°¶ÔÏóÖĞÓĞlinkInfo¶ÔÏó, ¼´Á¬½ÓĞÅÏ¢
-		if (this.linkInfo != null)
-		{
-			// »æÖÆÁ¬½ÓÏß
-			drawLine(this.linkInfo, canvas);
-			// ´¦ÀíÍêºóÇå¿ÕlinkInfo¶ÔÏó
-			this.linkInfo = null;
-		}
-		// »­Ñ¡ÖĞ±êÊ¶µÄÍ¼Æ¬
-		if (this.selectedPiece != null)
-		{
-			canvas.drawBitmap(this.selectImage, this.selectedPiece.getBeginX(),
-				this.selectedPiece.getBeginY(), null);
-		}
-	}
+    @Override
+    protected void onDraw(Canvas canvas)
+    {
+        super.onDraw(canvas);
+        if (this.gameService == null)
+            return;
+        Piece[][] pieces = gameService.getPieces();
+        if (pieces != null)
+        {
+            // éå†piecesäºŒç»´æ•°ç»„
+            for (int i = 0; i < pieces.length; i++)
+            {
+                for (int j = 0; j < pieces[i].length; j++)
+                {
+                    // å¦‚æœäºŒç»´æ•°ç»„ä¸­è¯¥å…ƒç´ ä¸ä¸ºç©ºï¼ˆå³æœ‰æ–¹å—ï¼‰ï¼Œå°†è¿™ä¸ªæ–¹å—çš„å›¾ç‰‡ç”»å‡ºæ¥
+                    if (pieces[i][j] != null)
+                    {
+                        // å¾—åˆ°è¿™ä¸ªPieceå¯¹è±¡
+                        Piece piece = pieces[i][j];
+                        // æ ¹æ®æ–¹å—å·¦ä¸Šè§’Xã€Yåº§æ ‡ç»˜åˆ¶æ–¹å—
+                        canvas.drawBitmap(piece.getImage().getImage(),
+                                piece.getBeginX(), piece.getBeginY(), null);
+                    }
+                }
+            }
+        }
+        // å¦‚æœå½“å‰å¯¹è±¡ä¸­æœ‰linkInfoå¯¹è±¡, å³è¿æ¥ä¿¡æ¯
+        if (this.linkInfo != null)
+        {
+            // ç»˜åˆ¶è¿æ¥çº¿
+            drawLine(this.linkInfo, canvas);
+            // å¤„ç†å®Œåæ¸…ç©ºlinkInfoå¯¹è±¡
+            this.linkInfo = null;
+        }
+        // ç”»é€‰ä¸­æ ‡è¯†çš„å›¾ç‰‡
+        if (this.selectedPiece != null)
+        {
+            canvas.drawBitmap(this.selectImage, this.selectedPiece.getBeginX(),
+                    this.selectedPiece.getBeginY(), null);
+        }
+    }
 
-	// ¸ù¾İLinkInfo»æÖÆÁ¬½ÓÏßµÄ·½·¨¡£
-	private void drawLine(LinkInfo linkInfo, Canvas canvas)
-	{
-		// »ñÈ¡LinkInfoÖĞ·â×°µÄËùÓĞÁ¬½Óµã
-		List<Point> points = linkInfo.getLinkPoints();
-		// ÒÀ´Î±éÀúlinkInfoÖĞµÄÃ¿¸öÁ¬½Óµã
-		for (int i = 0; i < points.size() - 1; i++)
-		{
-			// »ñÈ¡µ±Ç°Á¬½ÓµãÓëÏÂÒ»¸öÁ¬½Óµã
-			Point currentPoint = points.get(i);
-			Point nextPoint = points.get(i + 1);
-			// »æÖÆÁ¬Ïß
-			canvas.drawLine(currentPoint.x , currentPoint.y,
-				nextPoint.x, nextPoint.y, this.paint);
-		}
-	}
+    // æ ¹æ®LinkInfoç»˜åˆ¶è¿æ¥çº¿çš„æ–¹æ³•ã€‚
+    private void drawLine(LinkInfo linkInfo, Canvas canvas)
+    {
+        // è·å–LinkInfoä¸­å°è£…çš„æ‰€æœ‰è¿æ¥ç‚¹
+        List<Point> points = linkInfo.getLinkPoints();
+        // ä¾æ¬¡éå†linkInfoä¸­çš„æ¯ä¸ªè¿æ¥ç‚¹
+        for (int i = 0; i < points.size() - 1; i++)
+        {
+            // è·å–å½“å‰è¿æ¥ç‚¹ä¸ä¸‹ä¸€ä¸ªè¿æ¥ç‚¹
+            Point currentPoint = points.get(i);
+            Point nextPoint = points.get(i + 1);
+            // ç»˜åˆ¶è¿çº¿
+            canvas.drawLine(currentPoint.x , currentPoint.y,
+                    nextPoint.x, nextPoint.y, this.paint);
+        }
+    }
 
-	// ÉèÖÃµ±Ç°Ñ¡ÖĞ·½¿éµÄ·½·¨
-	public void setSelectedPiece(Piece piece)
-	{
-		this.selectedPiece = piece;
-	}
+    // è®¾ç½®å½“å‰é€‰ä¸­æ–¹å—çš„æ–¹æ³•
+    public void setSelectedPiece(Piece piece)
+    {
+        this.selectedPiece = piece;
+    }
 
-	// ¿ªÊ¼ÓÎÏ··½·¨
-	public void startGame()
-	{
-		this.gameService.start();
-		this.postInvalidate();
-	}
+    // å¼€å§‹æ¸¸æˆæ–¹æ³•
+    public void startGame()
+    {
+        this.gameService.start();
+        this.postInvalidate();
+    }
 }

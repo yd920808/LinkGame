@@ -8,8 +8,8 @@ import org.crazyit.link.object.GameConf;
 import org.crazyit.link.view.Piece;
 
 /**
- * Description: ´´½¨¾ØÕó·Ö²¼µÄÓÎÏ·ÇøÓò
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: åˆ›å»ºçŸ©é˜µåˆ†å¸ƒçš„æ¸¸æˆåŒºåŸŸ
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -19,23 +19,23 @@ import org.crazyit.link.view.Piece;
  */
 public class FullBoard extends AbstractBoard
 {
-	@Override
-	protected List<Piece> createPieces(GameConf config,
-		Piece[][] pieces)
-	{
-		// ´´½¨Ò»¸öPiece¼¯ºÏ, ¸Ã¼¯ºÏÀïÃæ´æ·Å³õÊ¼»¯ÓÎÏ·Ê±ËùĞèµÄPiece¶ÔÏó
-		List<Piece> notNullPieces = new ArrayList<Piece>();
-		for (int i = 1; i < pieces.length - 1; i++)
-		{
-			for (int j = 1; j < pieces[i].length - 1; j++)
-			{
-				// ÏÈ¹¹ÔìÒ»¸öPiece¶ÔÏó, Ö»ÉèÖÃËüÔÚPiece[][]Êı×éÖĞµÄË÷ÒıÖµ£¬
-				// ËùĞèÒªµÄPieceImageÓÉÆä¸¸Àà¸ºÔğÉèÖÃ¡£
-				Piece piece = new Piece(i, j);
-				// Ìí¼Óµ½Piece¼¯ºÏÖĞ
-				notNullPieces.add(piece);
-			}
-		}
-		return notNullPieces;
-	}
+    @Override
+    protected List<Piece> createPieces(GameConf config,
+                                       Piece[][] pieces)
+    {
+        // åˆ›å»ºä¸€ä¸ªPieceé›†åˆ, è¯¥é›†åˆé‡Œé¢å­˜æ”¾åˆå§‹åŒ–æ¸¸æˆæ—¶æ‰€éœ€çš„Pieceå¯¹è±¡
+        List<Piece> notNullPieces = new ArrayList<Piece>();
+        for (int i = 1; i < pieces.length - 1; i++)
+        {
+            for (int j = 1; j < pieces[i].length - 1; j++)
+            {
+                // å…ˆæ„é€ ä¸€ä¸ªPieceå¯¹è±¡, åªè®¾ç½®å®ƒåœ¨Piece[][]æ•°ç»„ä¸­çš„ç´¢å¼•å€¼ï¼Œ
+                // æ‰€éœ€è¦çš„PieceImageç”±å…¶çˆ¶ç±»è´Ÿè´£è®¾ç½®ã€‚
+                Piece piece = new Piece(i, j);
+                // æ·»åŠ åˆ°Pieceé›†åˆä¸­
+                notNullPieces.add(piece);
+            }
+        }
+        return notNullPieces;
+    }
 }

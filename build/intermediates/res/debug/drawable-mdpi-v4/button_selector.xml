@@ -8,4 +8,4 @@
 	<item android:state_pressed="false"
 		android:drawable="@drawable/start"
 	/>
-</selector><!-- From: file:/D:/software/android_studio/workspace/Link/res/drawable-mdpi/button_selector.xml -->
+</selector><!-- From: file:/F:/APP/LinkGame/res/drawable-mdpi/button_selector.xml -->

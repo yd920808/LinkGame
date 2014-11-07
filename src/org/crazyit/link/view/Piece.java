@@ -3,8 +3,19 @@ package org.crazyit.link.view;
 import android.graphics.Point;
 
 /**
- * Description: Á¬Á¬¿´ÓÎÏ·ÖĞµÄ·½¿é¶ÔÏó
+ * Description: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ĞµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
+ * <br/>This program is protected by copyright laws.
+ * <br/>Program Name:
+ * <br/>Date:
+ * @author  Yeeku.H.Lee kongyeeku@163.package org.crazyit.link.view;
+
+import android.graphics.Point;
+
+/**
+ * Description: è¿è¿çœ‹æ¸¸æˆä¸­çš„æ–¹å—å¯¹è±¡
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -14,18 +25,111 @@ import android.graphics.Point;
  */
 public class Piece
 {
-	// ±£´æ·½¿é¶ÔÏóµÄËù¶ÔÓ¦µÄÍ¼Æ¬
+    // ä¿å­˜æ–¹å—å¯¹è±¡çš„æ‰€å¯¹åº”çš„å›¾ç‰‡
+    private PieceImage image;
+    // è¯¥æ–¹å—çš„å·¦ä¸Šè§’çš„xåæ ‡
+    private int beginX;
+    // è¯¥æ–¹å—çš„å·¦ä¸Šè§’çš„yåº§æ ‡
+    private int beginY;
+    // è¯¥å¯¹è±¡åœ¨Piece[][]æ•°ç»„ä¸­ç¬¬ä¸€ç»´çš„ç´¢å¼•å€¼
+    private int indexX;
+    // è¯¥å¯¹è±¡åœ¨Piece[][]æ•°ç»„ä¸­ç¬¬äºŒç»´çš„ç´¢å¼•å€¼
+    private int indexY;
+
+    // åªè®¾ç½®è¯¥Pieceå¯¹è±¡åœ¨æ•°ç»„ä¸­çš„ç´¢å¼•å€¼
+    public Piece(int indexX , int indexY)
+    {
+        this.indexX = indexX;
+        this.indexY = indexY;
+    }
+
+    public int getBeginX()
+    {
+        return beginX;
+    }
+
+    public void setBeginX(int beginX)
+    {
+        this.beginX = beginX;
+    }
+
+    public int getBeginY()
+    {
+        return beginY;
+    }
+
+    public void setBeginY(int beginY)
+    {
+        this.beginY = beginY;
+    }
+
+    public int getIndexX()
+    {
+        return indexX;
+    }
+
+    public void setIndexX(int indexX)
+    {
+        this.indexX = indexX;
+    }
+
+    public int getIndexY()
+    {
+        return indexY;
+    }
+
+    public void setIndexY(int indexY)
+    {
+        this.indexY = indexY;
+    }
+
+
+    public PieceImage getImage()
+    {
+        return image;
+    }
+
+    public void setImage(PieceImage image)
+    {
+        this.image = image;
+    }
+
+    // è·å–è¯¥Pieceçš„ä¸­å¿ƒ
+    public Point getCenter()
+    {
+        return new Point(getImage().getImage().getWidth() / 2
+                + getBeginX(), getBeginY()
+                + getImage().getImage().getHeight() / 2);
+    }
+    // åˆ¤æ–­ä¸¤ä¸ªPieceä¸Šçš„å›¾ç‰‡æ˜¯å¦ç›¸åŒ
+    public boolean isSameImage(Piece other)
+    {
+        if (image == null)
+        {
+            if (other.image != null)
+                return false;
+        }
+        // åªè¦Pieceå°è£…å›¾ç‰‡IDç›¸åŒï¼Œå³å¯è®¤ä¸ºä¸¤ä¸ªPieceç›¸ç­‰ã€‚
+        return image.getImageId() == other.image.getImageId();
+    }
+}
+
+* @version  1.0
+ */
+public class Piece
+{
+	// ï¿½ï¿½ï¿½æ·½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Í¼Æ¬
 	private PieceImage image;
-	// ¸Ã·½¿éµÄ×óÉÏ½ÇµÄx×ø±ê
+	// ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Çµï¿½xï¿½ï¿½ï¿½
 	private int beginX;
-	// ¸Ã·½¿éµÄ×óÉÏ½ÇµÄy×ù±ê
+	// ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Çµï¿½yï¿½ï¿½ï¿½
 	private int beginY;
-	// ¸Ã¶ÔÏóÔÚPiece[][]Êı×éÖĞµÚÒ»Î¬µÄË÷ÒıÖµ
+	// ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½Piece[][]ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½Ò»Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 	private int indexX;
-	// ¸Ã¶ÔÏóÔÚPiece[][]Êı×éÖĞµÚ¶şÎ¬µÄË÷ÒıÖµ
+	// ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½Piece[][]ï¿½ï¿½ï¿½ï¿½ï¿½ĞµÚ¶ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 	private int indexY;
 
-	// Ö»ÉèÖÃ¸ÃPiece¶ÔÏóÔÚÊı×éÖĞµÄË÷ÒıÖµ
+	// Ö»ï¿½ï¿½ï¿½Ã¸ï¿½Pieceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 	public Piece(int indexX , int indexY)
 	{
 		this.indexX = indexX;
@@ -83,14 +187,14 @@ public class Piece
 		this.image = image;
 	}
 
-	// »ñÈ¡¸ÃPieceµÄÖĞĞÄ
+	// ï¿½ï¿½È¡ï¿½ï¿½Pieceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Point getCenter()
 	{
 		return new Point(getImage().getImage().getWidth() / 2
 			+ getBeginX(), getBeginY()
 			+ getImage().getImage().getHeight() / 2);
 	}	
-	// ÅĞ¶ÏÁ½¸öPieceÉÏµÄÍ¼Æ¬ÊÇ·ñÏàÍ¬
+	// ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½Pieceï¿½Ïµï¿½Í¼Æ¬ï¿½Ç·ï¿½ï¿½ï¿½Í¬
 	public boolean isSameImage(Piece other)
 	{
 		if (image == null)
@@ -98,7 +202,7 @@ public class Piece
 			if (other.image != null)
 				return false;
 		}
-		// Ö»ÒªPiece·â×°Í¼Æ¬IDÏàÍ¬£¬¼´¿ÉÈÏÎªÁ½¸öPieceÏàµÈ¡£
+		// Ö»ÒªPieceï¿½ï¿½×°Í¼Æ¬IDï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Pieceï¿½ï¿½È¡ï¿½
 		return image.getImageId() == other.image.getImageId();
 	}
 }

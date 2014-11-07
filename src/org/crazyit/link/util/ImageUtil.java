@@ -14,8 +14,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 /**
- * Description: Í¼Æ¬×ÊÔ´¹¤¾ßÀà, Ö÷ÒªÓÃÓÚ¶ÁÈ¡ÓÎÏ·Í¼Æ¬×ÊÔ´Öµ
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: å›¾ç‰‡èµ„æºå·¥å…·ç±», ä¸»è¦ç”¨äºè¯»å–æ¸¸æˆå›¾ç‰‡èµ„æºå€¼
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -25,118 +25,118 @@ import android.graphics.BitmapFactory;
  */
 public class ImageUtil
 {
-	// ±£´æËùÓĞÁ¬Á¬¿´Í¼Æ¬×ÊÔ´Öµ(intÀàĞÍ)
-	private static List<Integer> imageValues = getImageValues();
+    // ä¿å­˜æ‰€æœ‰è¿è¿çœ‹å›¾ç‰‡èµ„æºå€¼(intç±»å‹)
+    private static List<Integer> imageValues = getImageValues();
 
-	//»ñÈ¡Á¬Á¬¿´ËùÓĞÍ¼Æ¬µÄID£¨Ô¼¶¨ËùÓĞÍ¼Æ¬IDÒÔp_¿ªÍ·£©
-	public static List<Integer> getImageValues()
-	{
-		try
-		{
-			// µÃµ½R.drawableËùÓĞµÄÊôĞÔ, ¼´»ñÈ¡drawableÄ¿Â¼ÏÂµÄËùÓĞÍ¼Æ¬
-			Field[] drawableFields = R.drawable.class.getFields();
-			List<Integer> resourceValues = new ArrayList<Integer>();
-			for (Field field : drawableFields)
-			{
-				// Èç¹û¸ÃFieldµÄÃû³ÆÒÔp_¿ªÍ·
-				if (field.getName().indexOf("p_") != -1)
-				{
-					resourceValues.add(field.getInt(R.drawable.class));
-				}
-			}
-			return resourceValues;
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
-	}
+    //è·å–è¿è¿çœ‹æ‰€æœ‰å›¾ç‰‡çš„IDï¼ˆçº¦å®šæ‰€æœ‰å›¾ç‰‡IDä»¥p_å¼€å¤´ï¼‰
+    public static List<Integer> getImageValues()
+    {
+        try
+        {
+            // å¾—åˆ°R.drawableæ‰€æœ‰çš„å±æ€§, å³è·å–drawableç›®å½•ä¸‹çš„æ‰€æœ‰å›¾ç‰‡
+            Field[] drawableFields = R.drawable.class.getFields();
+            List<Integer> resourceValues = new ArrayList<Integer>();
+            for (Field field : drawableFields)
+            {
+                // å¦‚æœè¯¥Fieldçš„åç§°ä»¥p_å¼€å¤´
+                if (field.getName().indexOf("p_") != -1)
+                {
+                    resourceValues.add(field.getInt(R.drawable.class));
+                }
+            }
+            return resourceValues;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
 
-	/**
-	 * Ëæ»ú´ÓsourceValuesµÄ¼¯ºÏÖĞ»ñÈ¡size¸öÍ¼Æ¬ID, ·µ»Ø½á¹ûÎªÍ¼Æ¬IDµÄ¼¯ºÏ
-	 * 
-	 * @param sourceValues ´ÓÖĞ»ñÈ¡µÄ¼¯ºÏ
-	 * @param size ĞèÒª»ñÈ¡µÄ¸öÊı
-	 * @return size¸öÍ¼Æ¬IDµÄ¼¯ºÏ
-	 */
-	public static List<Integer> getRandomValues(List<Integer> sourceValues,
-		int size)
-	{
-		// ´´½¨Ò»¸öËæ»úÊıÉú³ÉÆ÷
-		Random random = new Random();
-		// ´´½¨½á¹û¼¯ºÏ
-		List<Integer> result = new ArrayList<Integer>();
-		for (int i = 0; i < size; i++)
-		{
-			try
-			{
-				// Ëæ»ú»ñÈ¡Ò»¸öÊı×Ö£¬´óÓÚ¡¢Ğ¡ÓÚsourceValues.size()µÄÊıÖµ
-				int index = random.nextInt(sourceValues.size());
-				// ´ÓÍ¼Æ¬ID¼¯ºÏÖĞ»ñÈ¡¸ÃÍ¼Æ¬¶ÔÏó
-				Integer image = sourceValues.get(index);
-				// Ìí¼Óµ½½á¹û¼¯ÖĞ
-				result.add(image);
-			}
-			catch (IndexOutOfBoundsException e)
-			{
-				return result;
-			}
-		}
-		return result;
-	}
+    /**
+     * éšæœºä»sourceValuesçš„é›†åˆä¸­è·å–sizeä¸ªå›¾ç‰‡ID, è¿”å›ç»“æœä¸ºå›¾ç‰‡IDçš„é›†åˆ
+     *
+     * @param sourceValues ä»ä¸­è·å–çš„é›†åˆ
+     * @param size éœ€è¦è·å–çš„ä¸ªæ•°
+     * @return sizeä¸ªå›¾ç‰‡IDçš„é›†åˆ
+     */
+    public static List<Integer> getRandomValues(List<Integer> sourceValues,
+                                                int size)
+    {
+        // åˆ›å»ºä¸€ä¸ªéšæœºæ•°ç”Ÿæˆå™¨
+        Random random = new Random();
+        // åˆ›å»ºç»“æœé›†åˆ
+        List<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < size; i++)
+        {
+            try
+            {
+                // éšæœºè·å–ä¸€ä¸ªæ•°å­—ï¼Œå¤§äºã€å°äºsourceValues.size()çš„æ•°å€¼
+                int index = random.nextInt(sourceValues.size());
+                // ä»å›¾ç‰‡IDé›†åˆä¸­è·å–è¯¥å›¾ç‰‡å¯¹è±¡
+                Integer image = sourceValues.get(index);
+                // æ·»åŠ åˆ°ç»“æœé›†ä¸­
+                result.add(image);
+            }
+            catch (IndexOutOfBoundsException e)
+            {
+                return result;
+            }
+        }
+        return result;
+    }
 
-	/**
-	 * ´ÓdrawableÄ¿Â¼ÖĞÖĞ»ñÈ¡size¸öÍ¼Æ¬×ÊÔ´ID(ÒÔp_ÎªÇ°×ºµÄ×ÊÔ´Ãû³Æ), ÆäÖĞsizeÎªÓÎÏ·ÊıÁ¿
-	 * 
-	 * @param size ĞèÒª»ñÈ¡µÄÍ¼Æ¬IDµÄÊıÁ¿
-	 * @return size¸öÍ¼Æ¬IDµÄ¼¯ºÏ
-	 */
-	public static List<Integer> getPlayValues(int size)
-	{
-		if (size % 2 != 0)
-		{
-			// Èç¹û¸ÃÊı³ı2ÓĞÓàÊı£¬½«size¼Ó1
-			size += 1;
-		}
-		// ÔÙ´ÓËùÓĞµÄÍ¼Æ¬ÖµÖĞËæ»ú»ñÈ¡sizeµÄÒ»°ëÊıÁ¿
-		List<Integer> playImageValues = getRandomValues(imageValues, size / 2);
-		// ½«playImageValues¼¯ºÏµÄÔªËØÔö¼ÓÒ»±¶£¨±£Ö¤ËùÓĞÍ¼Æ¬¶¼ÓĞÓëÖ®Åä¶ÔµÄÍ¼Æ¬£©
-		playImageValues.addAll(playImageValues);
-		// ½«ËùÓĞÍ¼Æ¬IDËæ»ú¡°Ï´ÅÆ¡±
-		Collections.shuffle(playImageValues);
-		return playImageValues;
-	}
+    /**
+     * ä»drawableç›®å½•ä¸­ä¸­è·å–sizeä¸ªå›¾ç‰‡èµ„æºID(ä»¥p_ä¸ºå‰ç¼€çš„èµ„æºåç§°), å…¶ä¸­sizeä¸ºæ¸¸æˆæ•°é‡
+     *
+     * @param size éœ€è¦è·å–çš„å›¾ç‰‡IDçš„æ•°é‡
+     * @return sizeä¸ªå›¾ç‰‡IDçš„é›†åˆ
+     */
+    public static List<Integer> getPlayValues(int size)
+    {
+        if (size % 2 != 0)
+        {
+            // å¦‚æœè¯¥æ•°é™¤2æœ‰ä½™æ•°ï¼Œå°†sizeåŠ 1
+            size += 1;
+        }
+        // å†ä»æ‰€æœ‰çš„å›¾ç‰‡å€¼ä¸­éšæœºè·å–sizeçš„ä¸€åŠæ•°é‡
+        List<Integer> playImageValues = getRandomValues(imageValues, size / 2);
+        // å°†playImageValuesé›†åˆçš„å…ƒç´ å¢åŠ ä¸€å€ï¼ˆä¿è¯æ‰€æœ‰å›¾ç‰‡éƒ½æœ‰ä¸ä¹‹é…å¯¹çš„å›¾ç‰‡ï¼‰
+        playImageValues.addAll(playImageValues);
+        // å°†æ‰€æœ‰å›¾ç‰‡IDéšæœºâ€œæ´—ç‰Œâ€
+        Collections.shuffle(playImageValues);
+        return playImageValues;
+    }
 
-	/**
-	 * ½«Í¼Æ¬ID¼¯ºÏ×ª»»PieceImage¶ÔÏó¼¯ºÏ£¬PieceImage·â×°ÁËÍ¼Æ¬IDÓëÍ¼Æ¬±¾Éí
-	 * 
-	 * @param context
-	 * @param resourceValues
-	 * @return size¸öPieceImage¶ÔÏóµÄ¼¯ºÏ
-	 */
-	public static List<PieceImage> getPlayImages(Context context, int size)
-	{
-		// »ñÈ¡Í¼Æ¬ID×é³ÉµÄ¼¯ºÏ
-		List<Integer> resourceValues = getPlayValues(size);
-		List<PieceImage> result = new ArrayList<PieceImage>();
-		// ±éÀúÃ¿¸öÍ¼Æ¬ID
-		for (Integer value : resourceValues)
-		{
-			// ¼ÓÔØÍ¼Æ¬
-			Bitmap bm = BitmapFactory.decodeResource(
-				context.getResources(),  value);
-			// ·â×°Í¼Æ¬IDÓëÍ¼Æ¬±¾Éí
-			PieceImage pieceImage = new PieceImage(bm, value);
-			result.add(pieceImage);
-		}
-		return result;
-	}
+    /**
+     * å°†å›¾ç‰‡IDé›†åˆè½¬æ¢PieceImageå¯¹è±¡é›†åˆï¼ŒPieceImageå°è£…äº†å›¾ç‰‡IDä¸å›¾ç‰‡æœ¬èº«
+     *
+     * @param context
+     * @param resourceValues
+     * @return sizeä¸ªPieceImageå¯¹è±¡çš„é›†åˆ
+     */
+    public static List<PieceImage> getPlayImages(Context context, int size)
+    {
+        // è·å–å›¾ç‰‡IDç»„æˆçš„é›†åˆ
+        List<Integer> resourceValues = getPlayValues(size);
+        List<PieceImage> result = new ArrayList<PieceImage>();
+        // éå†æ¯ä¸ªå›¾ç‰‡ID
+        for (Integer value : resourceValues)
+        {
+            // åŠ è½½å›¾ç‰‡
+            Bitmap bm = BitmapFactory.decodeResource(
+                    context.getResources(),  value);
+            // å°è£…å›¾ç‰‡IDä¸å›¾ç‰‡æœ¬èº«
+            PieceImage pieceImage = new PieceImage(bm, value);
+            result.add(pieceImage);
+        }
+        return result;
+    }
 
-	// »ñÈ¡Ñ¡ÖĞ±êÊ¶µÄÍ¼Æ¬
-	public static Bitmap getSelectImage(Context context)
-	{
-		Bitmap bm = BitmapFactory.decodeResource(context.getResources(),
-			R.drawable.selected);
-		return bm;
-	}
+    // è·å–é€‰ä¸­æ ‡è¯†çš„å›¾ç‰‡
+    public static Bitmap getSelectImage(Context context)
+    {
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.selected);
+        return bm;
+    }
 }

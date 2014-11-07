@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import android.graphics.Point;
 
 /**
- * Description: Á¬½ÓĞÅÏ¢Àà
- * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a> 
+ * Description: è¿æ¥ä¿¡æ¯ç±»
+ * <br/>site: <a href="http://www.crazyit.org">crazyit.org</a>
  * <br/>Copyright (C), 2001-2012, Yeeku.H.Lee
  * <br/>This program is protected by copyright laws.
  * <br/>Program Name:
@@ -17,37 +17,37 @@ import android.graphics.Point;
  */
 public class LinkInfo
 {
-	// ´´½¨Ò»¸ö¼¯ºÏÓÃÓÚ±£´æÁ¬½Óµã
-	private List<Point> points = new ArrayList<Point>();
+    // åˆ›å»ºä¸€ä¸ªé›†åˆç”¨äºä¿å­˜è¿æ¥ç‚¹
+    private List<Point> points = new ArrayList<Point>();
 
-	// Ìá¹©µÚÒ»¸ö¹¹ÔìÆ÷, ±íÊ¾Á½¸öPoint¿ÉÒÔÖ±½ÓÏàÁ¬, Ã»ÓĞ×ªÕÛµã
-	public LinkInfo(Point p1, Point p2)
-	{
-		// ¼Óµ½¼¯ºÏÖĞÈ¥
-		points.add(p1);
-		points.add(p2);
-	}
+    // æä¾›ç¬¬ä¸€ä¸ªæ„é€ å™¨, è¡¨ç¤ºä¸¤ä¸ªPointå¯ä»¥ç›´æ¥ç›¸è¿, æ²¡æœ‰è½¬æŠ˜ç‚¹
+    public LinkInfo(Point p1, Point p2)
+    {
+        // åŠ åˆ°é›†åˆä¸­å»
+        points.add(p1);
+        points.add(p2);
+    }
 
-	// Ìá¹©µÚ¶ş¸ö¹¹ÔìÆ÷, ±íÊ¾Èı¸öPoint¿ÉÒÔÏàÁ¬, p2ÊÇp1Óëp3Ö®¼äµÄ×ªÕÛµã
-	public LinkInfo(Point p1, Point p2, Point p3)
-	{
-		points.add(p1);
-		points.add(p2);
-		points.add(p3);
-	}
+    // æä¾›ç¬¬äºŒä¸ªæ„é€ å™¨, è¡¨ç¤ºä¸‰ä¸ªPointå¯ä»¥ç›¸è¿, p2æ˜¯p1ä¸p3ä¹‹é—´çš„è½¬æŠ˜ç‚¹
+    public LinkInfo(Point p1, Point p2, Point p3)
+    {
+        points.add(p1);
+        points.add(p2);
+        points.add(p3);
+    }
 
-	// Ìá¹©µÚÈı¸ö¹¹ÔìÆ÷, ±íÊ¾ËÄ¸öPoint¿ÉÒÔÏàÁ¬, p2, p3ÊÇp1Óëp4µÄ×ªÕÛµã
-	public LinkInfo(Point p1, Point p2, Point p3, Point p4)
-	{
-		points.add(p1);
-		points.add(p2);
-		points.add(p3);
-		points.add(p4);
-	}
+    // æä¾›ç¬¬ä¸‰ä¸ªæ„é€ å™¨, è¡¨ç¤ºå››ä¸ªPointå¯ä»¥ç›¸è¿, p2, p3æ˜¯p1ä¸p4çš„è½¬æŠ˜ç‚¹
+    public LinkInfo(Point p1, Point p2, Point p3, Point p4)
+    {
+        points.add(p1);
+        points.add(p2);
+        points.add(p3);
+        points.add(p4);
+    }
 
-	// ·µ»ØÁ¬½Ó¼¯ºÏ
-	public List<Point> getLinkPoints()
-	{
-		return points;
-	}
+    // è¿”å›è¿æ¥é›†åˆ
+    public List<Point> getLinkPoints()
+    {
+        return points;
+    }
 }
